@@ -4,18 +4,19 @@
   Source: https://github.com/8bsite/trampoline-park-website-template
   MIT License (code) https://8b.com/ · Photos: Unsplash License, see CREDITS.md · Fonts: Google Fonts (OFL)
   One HTML file, no build step. Notes for people and AI agents: README.md and AGENTS.md.
+  Scroll motion: CSS scroll-driven animations and an inline script, no libraries. A GSAP build of this page: index.gsap.html.
 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free HTML trampoline park website template with GSAP scroll animations — Hopla (live demo)</title>
-<meta name="description" content="Free HTML trampoline park website template with GSAP scroll animations, for a trampoline park, play centre or family activity venue. One file, no build step, MIT. By 8B.">
+<title>Free HTML trampoline park website template with scroll animations and no libraries — Hopla (live demo)</title>
+<meta name="description" content="Free HTML trampoline park website template with scroll animations and no libraries (GSAP build included), for a trampoline park, play centre or family activity venue. One HTML file, MIT, with AGENTS.md for Claude Code, Cursor and Codex. By 8B.">
 <meta name="generator" content="8B Templates">
 <meta name="robots" content="noindex, follow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Free HTML trampoline park website template with GSAP scroll animations — Hopla (live demo)">
-<meta property="og:description" content="Free HTML trampoline park website template with GSAP scroll animations, for a trampoline park, play centre or family activity venue. One file, no build step, MIT. By 8B.">
+<meta property="og:title" content="Free HTML trampoline park website template with scroll animations and no libraries — Hopla (live demo)">
+<meta property="og:description" content="Free HTML trampoline park website template with scroll animations and no libraries (GSAP build included), for a trampoline park, play centre or family activity venue. One HTML file, MIT, with AGENTS.md for Claude Code, Cursor and Codex. By 8B.">
 <meta property="og:image" content="https://8bsite.github.io/trampoline-park-website-template/previews/desktop.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2064%2064'%3E%3Crect%20width%3D'64'%20height%3D'64'%20rx%3D'14'%20fill%3D'%23E2130F'%2F%3E%3Ctext%20x%3D'32'%20y%3D'45'%20font-family%3D'Arial%2CHelvetica%2Csans-serif'%20font-size%3D'38'%20font-weight%3D'700'%20text-anchor%3D'middle'%20fill%3D'%23FFFFFF'%3EH%3C%2Ftext%3E%3C%2Fsvg%3E" data-8b-placeholder="favicon">
@@ -243,10 +244,6 @@
 /* end font fallbacks */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-html.lenis, html.lenis body { height: auto; }
-.lenis-stopped { overflow: clip; }
-.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-.lenis.lenis-smooth iframe { pointer-events: none; }
 body { margin: 0; background: var(--color-1); color: var(--color-3); font-family: var(--font-3); font-size: 17px; line-height: 1.5; overflow-x: clip; }
 img { display: block; max-width: 100%; height: auto; }
 h1, h2, h3, h4, p, ul, ol, figure, dl, dd { margin: 0; }
@@ -258,7 +255,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .skip { position: fixed; left: 12px; top: -80px; z-index: 100; background: var(--color-6); color: var(--color-3); padding: 10px 16px; border-radius: var(--radius-3); font-weight: 700; }
 .skip:focus { top: 12px; }
 @media (prefers-reduced-motion: no-preference) {
-  [data-loop].is-paused, [data-loop].is-paused * { animation-play-state: paused; }
 }
 }
 </style>
@@ -397,7 +393,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   #opening .op__sticker--2 .op__sticker-in { animation: op-slap .45s .7s cubic-bezier(.3, 1.4, .5, 1) backwards; }
   #opening .op__wob { animation: op-wob 3.2s 1.2s ease-in-out infinite; }
   #opening .op__col { animation: op-rise .6s .35s cubic-bezier(.3, .8, .3, 1) backwards; }
-  #opening [data-loop].is-paused { animation-play-state: paused; }
 }
 @keyframes op-land {
   0% { transform: translateY(26%) scaleY(1.1); }
@@ -526,7 +521,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 #parties .pt__path { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 #parties .pt__dash { fill: none; stroke: var(--color-5); stroke-width: 7; stroke-linecap: round; stroke-dasharray: 18 20; }
 #parties .pt__trail { fill: none; stroke: var(--color-2); stroke-width: 7; stroke-linecap: round; visibility: hidden; }
-#parties[data-route] .pt__trail { visibility: visible; }
+[data-8b-live] #parties .pt__trail { visibility: visible; }
 #parties .pt__stops { position: absolute; inset: 0; }
 #parties .pt__stop { position: absolute; width: 34%; display: grid; gap: 14px; }
 #parties .pt__stop:nth-child(1) { left: 5%; top: 0; }
@@ -549,7 +544,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   #parties .pt__stops { position: relative; inset: auto; display: grid; gap: 48px; padding-left: 52px; }
   #parties .pt__stops::before { content: ""; position: absolute; left: 17px; top: 0; bottom: 0; border-left: 6px dashed var(--color-5); }
   #parties .pt__stops::after { content: ""; display: none; position: absolute; left: 17px; top: 0; bottom: 0; width: 6px; border-radius: 3px; background: var(--color-2); transform-origin: 50% 0; scale: 1 var(--trail, 1); }
-  #parties[data-route] .pt__stops::after { display: block; }
+  [data-8b-live] #parties .pt__stops::after { display: block; }
   #parties .pt__stop, #parties .pt__stop:nth-child(n) { position: relative; left: auto; top: auto; width: 100%; }
   #parties .pt__ball { left: -5px; top: -25px; }
 }
@@ -713,14 +708,161 @@ button, input, select, textarea { font: inherit; color: inherit; }
 #footer .ft__meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 18px; }
 #footer .ft__mark-wrap { position: relative; margin-top: clamp(90px, 12vw, 180px); padding-bottom: clamp(20px, 3vw, 40px); }
 #footer .ft__mark { display: block; text-align: center; font-size: min(36vw, (100vw - 2 * var(--space-2)) / (var(--len) * .5)); line-height: .82; letter-spacing: .03em; -webkit-text-stroke: .045em var(--color-6); }
-#footer .ft__char { transform-origin: 50% 100%; }
 #footer .ft__disc { position: absolute; width: clamp(70px, 9vw, 140px); z-index: 1; pointer-events: none; }
 #footer .ft__disc--1 { left: 3%; top: clamp(-120px, -9vw, -60px); rotate: -8deg; }
 #footer .ft__disc--2 { left: 44%; top: clamp(-150px, -11vw, -70px); rotate: 6deg; }
 #footer .ft__disc--3 { right: 4%; top: clamp(-110px, -8vw, -56px); }
 }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Free HTML trampoline park website template with GSAP scroll animations — Hopla","description":"Free HTML trampoline park website template with GSAP scroll animations, for a trampoline park, play centre or family activity venue. One file, no build step, MIT. By 8B.","url":"https://8b.com/templates/hopla/","codeRepository":"https://github.com/8bsite/trampoline-park-website-template","license":"https://opensource.org/licenses/MIT","programmingLanguage":["HTML","CSS","JavaScript"],"isAccessibleForFree":true,"image":"https://8bsite.github.io/trampoline-park-website-template/previews/desktop.png","author":{"@type":"Organization","name":"8B","url":"https://8b.com/"}}</script>
+<style data-8b-part="motion">
+@layer scenes {
+[data-8b-live] { --ease-64ef59: linear(0, 0.1349, 0.26, 0.3754, 0.4816, 0.5789, 0.6677, 0.7482, 0.8208, 0.8859, 0.9438, 0.9947, 1.0392, 1.0775, 1.1099, 1.1367, 1.1584, 1.1752, 1.1875, 1.1957, 1.2, 1.2008, 1.1984, 1.1933, 1.1856, 1.1758, 1.1642, 1.151, 1.1368, 1.1218, 1.1062, 1.0906, 1.0752, 1.0603, 1.0464, 1.0336, 1.0224, 1.0131, 1.0061, 1.0016, 1); }
+[data-8b-live] [data-8b-motion~="hop"] { animation-name: motion-hop-translate, motion-hop-opacity, motion-hop-scale; animation-duration: 0.58s, 0.38s, 1.01s; animation-delay: 0s; animation-timing-function: linear, cubic-bezier(0.3333, 1, 0.6667, 1), linear; animation-fill-mode: both; animation-play-state: paused; transform: none; transform-origin: 50% 100%; }
+[data-8b-live] [data-8b-motion~="hop"].is-in { animation-play-state: running; }
+[data-8b-live] [data-8b-motion~="sticker"] { animation-name: motion-sticker-scale, motion-sticker-rotate, motion-hop-opacity; animation-duration: 0.5s; animation-delay: calc(0s + var(--sticker-delay, 0s)); animation-timing-function: var(--ease-64ef59); animation-fill-mode: both; animation-play-state: paused; transform: none; }
+[data-8b-live] [data-8b-motion~="sticker"].is-in { animation-play-state: running; }
+[data-8b-live] [data-8b-motion~="twang"].is-in path { animation-name: motion-twang; animation-duration: 1.42s; animation-timing-function: linear(0, 0.3146, 0.5552, 0.7317, 0.8539, 0.9319, 0.9756, 0.9949, 0.9998, 0.8916, 0.6749, 0.4477, 0.2252, 0.0203, -0.1571, -0.3, -0.4045, -0.4699, -0.4975, -0.491, -0.4556, -0.3975, -0.3234, -0.2401, -0.1539, -0.0705, 0.0055, 0.0705, 0.122, 0.1589, 0.181, 0.189, 0.1843, 0.1692, 0.1458, 0.117, 0.085, 0.0524, 0.0212, -0.0069, -0.0307, -0.0492, -0.0622, -0.0695, -0.0716, -0.0691, -0.0627, -0.0534, -0.0422, -0.0299, -0.0176, -0.006, 0.0044, 0.0131, 0.0197, 0.0242, 0.0266, 0.0271, 0.0258, 0.0232, 0.0195, 0.0151, 0.0105, 0.0058, 0.0015, -0.0023, -0.0055, -0.0078, -0.0094, -0.0102, -0.0102, -0.0096, -0.0086, -0.0071, -0.0054, -0.0036, -0.0019, -0.0003, 0.0011, 0.0023, 0.0031, 0.0036, 0.0039, 0.0038, 0.0036, 0.0031, 0.0026, 0.0019, 0.0013, 0.0006, 0, -0.0005, -0.0009, -0.0012, -0.0014, -0.0015, -0.0014, -0.0013, -0.0012, -0.0009, 0); }
+@keyframes motion-hop-translate { 0% { translate: 0px 70px; animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); } 65.5172% { translate: 0px -12px; animation-timing-function: cubic-bezier(0.3333, 0, 0.6667, 0); } 100% { translate: 0px 0px; } }
+@keyframes motion-twang { 0% { d: path("M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"); } 100% { d: path("M0,100 L0,60.4 L25,63.3 L50,65.7 L75,67.7 L100,69.1 L125,70.1 L150,70.6 L175,70.6 L200,70.3 L225,69.8 L250,69.0 L275,68.2 L300,67.4 L325,66.6 L350,65.9 L375,65.3 L400,64.7 L425,64.1 L450,63.5 L475,62.9 L500,62.3 L525,61.6 L550,61.0 L575,60.4 L600,60.0 L625,59.7 L650,59.8 L675,60.1 L700,60.8 L725,61.7 L750,62.9 L775,64.3 L800,65.6 L825,66.9 L850,68.0 L875,68.8 L900,69.1 L925,69.0 L950,68.3 L975,67.0 L1000,65.1 L1000,100 Z"); } }
+@keyframes motion-hop-opacity { 0% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes motion-hop-scale { 0% { scale: 1 1.06; } 0.0099% { scale: 1 1.06; } 1.6666% { scale: 1 1.0524; } 3.3334% { scale: 1 1.0454; } 5% { scale: 1 1.0391; } 6.6666% { scale: 1 1.0334; } 8.3334% { scale: 1 1.0283; } 10% { scale: 1 1.0237; } 11.6666% { scale: 1 1.0197; } 13.3334% { scale: 1 1.0161; } 15% { scale: 1 1.013; } 16.6666% { scale: 1 1.0104; } 18.3334% { scale: 1 1.0081; } 20% { scale: 1 1.0062; } 21.6666% { scale: 1 1.0046; } 23.3334% { scale: 1 1.0033; } 25% { scale: 1 1.0023; } 26.6666% { scale: 1 1.0015; } 28.3334% { scale: 1 1.0009; } 30% { scale: 1 1.0005; } 31.6666% { scale: 1 1.0002; } 33.3334% { scale: 1 1.0001; } 35% { scale: 1; } 36.6666% { scale: 1; } 37.6139% { scale: 1; } 37.6238% { scale: 1; } 37.6337% { scale: 1; } 38.3334% { scale: 1; } 40% { scale: 1; } 41.6666% { scale: 1; } 43.3334% { scale: 1; } 45% { scale: 1; } 46.6666% { scale: 1; } 48.3334% { scale: 1; } 50% { scale: 1; } 51.6666% { scale: 1; } 53.3334% { scale: 1; } 55% { scale: 1; } 56.6666% { scale: 1; } 57.4158% { scale: 1; } 57.4257% { scale: 1; } 57.4356% { scale: 1.0001 0.9998; } 58.3334% { scale: 1.0086 0.9784; } 60% { scale: 1.0218 0.9456; } 61.6666% { scale: 1.0314 0.9216; } 63.3334% { scale: 1.0374 0.9065; } 65% { scale: 1.0399 0.9002; } 65.3366% { scale: 1.04 0.9; } 65.3465% { scale: 1.04 0.9; } 65.3564% { scale: 1.0399 0.9002; } 66.6666% { scale: 1.0314 0.9216; } 68.3334% { scale: 1.0219 0.9453; } 70% { scale: 1.0139 0.9653; } 71.6666% { scale: 1.0072 0.9819; } 73.3334% { scale: 1.0018 0.9954; } 75% { scale: 0.9976 1.0059; } 76.6666% { scale: 0.9944 1.0139; } 78.3334% { scale: 0.9922 1.0195; } 80% { scale: 0.9908 1.023; } 81.6666% { scale: 0.9901 1.0247; } 83.3334% { scale: 0.99 1.0249; } 85% { scale: 0.9905 1.0238; } 86.6666% { scale: 0.9913 1.0216; } 88.3334% { scale: 0.9925 1.0187; } 90% { scale: 0.9939 1.0154; } 91.6666% { scale: 0.9953 1.0118; } 93.3334% { scale: 0.9967 1.0083; } 95% { scale: 0.998 1.005; } 96.6666% { scale: 0.999 1.0024; } 98.3334% { scale: 0.9997 1.0006; } 99.9901% { scale: 1; } 100% { scale: 1; } }
+@keyframes motion-sticker-scale { 0% { scale: var(--sticker-scale-from, 1.6); } 100% { scale: 1; } }
+@keyframes motion-sticker-rotate { 0% { rotate: var(--sticker-rotate-from, -18deg); } 100% { rotate: var(--sticker-rotate-to, -4deg); } }
+}
+</style>
+<style data-8b-part="scene:opening">
+@layer scenes {
+[data-8b-live] #opening { view-timeline: --opening-t1 block; view-timeline-inset: 0; }
+[data-8b-live] #opening .op__jumper, [data-8b-live] #opening .op__title-in, [data-8b-live] #opening .op__sticker--1, [data-8b-live] #opening .op__sticker--2, [data-8b-live] #opening .op__fan > li, [data-8b-live] #opening .op__wave path { animation-timeline: --opening-t1; animation-fill-mode: both; transform: none; }
+[data-8b-live] #opening .op__jumper { animation-name: opening-jumper-translate, opening-div-op-jumper-scale, opening-div-op-jumper-rotate; animation-timing-function: linear; animation-range: cover 100vh cover 163.1944vh, cover 121.3889vh cover 158.3333vh, cover 130.1389vh cover 163.1944vh; }
+[data-8b-live] #opening .op__title-in { animation-name: opening-span-op-title-in-scale; animation-timing-function: linear; animation-range: cover 123.3333vh cover 162.2222vh; }
+[data-8b-live] #opening .op__sticker--1 { animation-name: opening-div-op-sticker-translate, opening-div-op-sticker-rotate; animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); animation-range: cover 129.1667vh cover 162.2222vh; }
+[data-8b-live] #opening .op__sticker--2 { animation-name: opening-sticker-translate-2, opening-div-op-sticker-rotate-2; animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); animation-range: cover 132.0833vh cover 165.1389vh; }
+[data-8b-live] #opening .op__fan > li { animation-name: opening-card-translate, opening-li-op-card-rotate; animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); animation-range: cover calc(154.4444vh + 5.8333vh * var(--i)) cover calc(193.3333vh + 5.8333vh * var(--i)); }
+[data-8b-live] #opening .op__wave path { animation-name: opening-wave-sag; animation-timing-function: linear; animation-range: cover 100vh cover 205vh; }
+@keyframes opening-jumper-translate { 0% { translate: 0px 0px; animation-timing-function: cubic-bezier(0.3333, 0, 0.6667, 0.3333); } 30.7692% { translate: 0px var(--opening-drop, 0px); animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); } 47.6923% { translate: 0px var(--opening-press, 0px); animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1); } 100% { translate: 0px -115vh; } }
+@keyframes opening-div-op-jumper-scale { 0% { scale: 1; animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); } 26.3158% { scale: 1.12 0.78; } 26.3178% { scale: 1.1193 0.7811; animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); } 47.3684% { scale: 0.94 1.08; } 100% { scale: 1; } }
+@keyframes opening-div-op-jumper-rotate { 0% { rotate: 0deg; } 2.9706% { rotate: -40.908deg; } 4.1176% { rotate: -55.731deg; } 5.9118% { rotate: -77.874deg; } 8.8529% { rotate: -111.531deg; } 9.4118% { rotate: -117.568deg; } 14.7059% { rotate: -169.463deg; } 20% { rotate: -212.544deg; } 25.2941% { rotate: -247.87deg; } 26.5% { rotate: -254.936deg; } 30.5882% { rotate: -276.433deg; } 32.3824% { rotate: -284.744deg; } 35.3235% { rotate: -297.008deg; } 35.8824% { rotate: -299.157deg; } 41.1765% { rotate: -316.897deg; } 46.4706% { rotate: -330.442deg; } 51.7647% { rotate: -340.512deg; } 57.0588% { rotate: -347.76deg; } 62.3529% { rotate: -352.769deg; } 64.7353% { rotate: -354.433deg; } 67.6471% { rotate: -356.056deg; } 72.9412% { rotate: -358.07deg; } 78.2353% { rotate: -359.192deg; } 83.5294% { rotate: -359.735deg; } 91.2059% { rotate: -359.978deg; } 100% { rotate: -360deg; } }
+@keyframes opening-span-op-title-in-scale { 0% { scale: 1; animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); } 25% { scale: 1.02 0.84; } 25.002% { scale: 1.0199 0.841; animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); } 45% { scale: 0.98 1.12; animation-timing-function: linear(0, 0.106, 0.2424, 0.3971, 0.5591, 0.7187, 0.8677, 1, 1.1113, 1.1989, 1.2621, 1.3014, 1.3185, 1.3161, 1.2973, 1.2658, 1.2252, 1.1792, 1.1311, 1.0836, 1.0393, 1, 0.9669, 0.9409, 0.9221, 0.9104, 0.9053, 0.906, 0.9116, 0.921, 0.933, 0.9467, 0.961, 0.9751, 0.9883, 1, 1.0098, 1.0176, 1.0232, 1.0266, 1.0282, 1.0279, 1.0263, 1.0235, 1.0199, 1.0158, 1.0116, 1.0074, 1.0035, 1, 0.9971, 0.9948, 0.9931, 0.9921, 0.9916, 0.9917, 0.9922, 0.993, 0.9941, 0.9953, 0.9966, 0.9978, 0.999, 1, 1.0009, 1.0016, 1.002, 1.0024, 1.0025, 1.0025, 1.0023, 1.0021, 1.0018, 1.0014, 1.001, 1.0007, 1.0003, 1, 0.9997, 0.9995, 1); } 100% { scale: 1; } }
+@keyframes opening-div-op-sticker-translate { 0% { translate: 0px 0px; } 0.002% { translate: -0.07px -0.062vh; } 100% { translate: -80px -70vh; } }
+@keyframes opening-div-op-sticker-rotate { 0% { rotate: 0deg; } 100% { rotate: -50deg; } }
+@keyframes opening-sticker-translate-2 { 0% { translate: 0px 0px; } 100% { translate: 80px -85vh; } }
+@keyframes opening-div-op-sticker-rotate-2 { 0% { rotate: 0deg; } 100% { rotate: 40deg; } }
+@keyframes opening-card-translate { 0% { translate: var(--opening-card-x, 0px) var(--opening-fan-y, 0px); } 100% { translate: 0px 0px; } }
+@keyframes opening-li-op-card-rotate { 0% { rotate: var(--opening-li-op-card-rotate-from, 11deg); } 100% { rotate: 0deg; } }
+@keyframes opening-wave-sag { 0% { d: path("M0,100 L0,19.4 L25,20.3 L50,21.0 L75,21.6 L100,21.9 L125,22.0 L150,21.9 L175,21.5 L200,21.0 L225,20.2 L250,19.3 L275,18.2 L300,17.1 L325,15.9 L350,14.8 L375,13.6 L400,12.6 L425,11.7 L450,11.0 L475,10.4 L500,10.1 L525,10.0 L550,10.1 L575,10.5 L600,11.0 L625,11.8 L650,12.7 L675,13.8 L700,14.9 L725,16.1 L750,17.2 L775,18.4 L800,19.4 L825,20.3 L850,21.0 L875,21.6 L900,21.9 L925,22.0 L950,21.9 L975,21.5 L1000,21.0 L1000,100 Z"); } 18.5185% { d: path("M0,100 L0,19.4 L25,20.3 L50,21.0 L75,21.6 L100,21.9 L125,22.0 L150,21.9 L175,21.5 L200,21.0 L225,20.2 L250,19.3 L275,18.2 L300,17.1 L325,15.9 L350,14.8 L375,13.6 L400,12.6 L425,11.7 L450,11.0 L475,10.4 L500,10.1 L525,10.0 L550,10.1 L575,10.5 L600,11.0 L625,11.8 L650,12.7 L675,13.8 L700,14.9 L725,16.1 L750,17.2 L775,18.4 L800,19.4 L825,20.3 L850,21.0 L875,21.6 L900,21.9 L925,22.0 L950,21.9 L975,21.5 L1000,21.0 L1000,100 Z"); animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); } 29.6296% { d: path("M0,100 L0,19.9 L25,21.1 L50,22.3 L75,23.5 L100,24.7 L125,26.1 L150,27.6 L175,29.4 L200,31.5 L225,34.1 L250,37.1 L275,40.5 L300,44.3 L325,48.4 L350,52.7 L375,56.8 L400,60.6 L425,63.9 L450,66.3 L475,67.8 L500,68.1 L525,67.3 L550,65.5 L575,62.6 L600,59.1 L625,55.0 L650,50.6 L675,46.3 L700,42.1 L725,38.3 L750,35.0 L775,32.2 L800,30.0 L825,28.2 L850,26.7 L875,25.6 L900,24.7 L925,23.9 L950,23.1 L975,22.3 L1000,21.5 L1000,100 Z"); } 30.5556% { d: path("M0,100 L0,19.9 L25,21.1 L50,22.3 L75,23.5 L100,24.7 L125,26.1 L150,27.6 L175,29.4 L200,31.5 L225,34.1 L250,37.1 L275,40.5 L300,44.3 L325,48.4 L350,52.7 L375,56.8 L400,60.6 L425,63.9 L450,66.3 L475,67.8 L500,68.1 L525,67.3 L550,65.5 L575,62.6 L600,59.1 L625,55.0 L650,50.6 L675,46.3 L700,42.1 L725,38.3 L750,35.0 L775,32.2 L800,30.0 L825,28.2 L850,26.7 L875,25.6 L900,24.7 L925,23.9 L950,23.1 L975,22.3 L1000,21.5 L1000,100 Z"); animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); } 39.8148% { d: path("M0,100 L0,19.3 L25,20.1 L50,20.7 L75,21.1 L100,21.2 L125,21.0 L150,20.5 L175,19.6 L200,18.4 L225,16.8 L250,15.0 L275,12.9 L300,10.5 L325,8.1 L350,5.6 L375,3.2 L400,1.0 L425,-0.9 L450,-2.4 L475,-3.4 L500,-3.9 L525,-3.8 L550,-3.2 L575,-2.1 L600,-0.5 L625,1.4 L650,3.6 L675,5.9 L700,8.3 L725,10.7 L750,12.9 L775,15.0 L800,16.8 L825,18.4 L850,19.6 L875,20.6 L900,21.2 L925,21.5 L950,21.6 L975,21.3 L1000,20.8 L1000,100 Z"); animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); } 49.0741% { d: path("M0,100 L0,19.4 L25,20.4 L50,21.2 L75,21.8 L100,22.2 L125,22.5 L150,22.6 L175,22.5 L200,22.2 L225,21.9 L250,21.4 L275,20.9 L300,20.4 L325,19.9 L350,19.3 L375,18.9 L400,18.4 L425,18.0 L450,17.7 L475,17.3 L500,17.1 L525,16.9 L550,16.8 L575,16.8 L600,16.8 L625,17.0 L650,17.3 L675,17.7 L700,18.2 L725,18.8 L750,19.4 L775,20.0 L800,20.7 L825,21.2 L850,21.7 L875,22.1 L900,22.2 L925,22.2 L950,22.0 L975,21.6 L1000,21.0 L1000,100 Z"); animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); } 62.037% { d: path("M0,100 L0,19.4 L25,20.3 L50,21.0 L75,21.6 L100,21.9 L125,22.0 L150,21.9 L175,21.5 L200,21.0 L225,20.2 L250,19.3 L275,18.2 L300,17.1 L325,15.9 L350,14.8 L375,13.6 L400,12.6 L425,11.7 L450,11.0 L475,10.4 L500,10.1 L525,10.0 L550,10.1 L575,10.5 L600,11.0 L625,11.8 L650,12.7 L675,13.8 L700,14.9 L725,16.1 L750,17.2 L775,18.4 L800,19.4 L825,20.3 L850,21.0 L875,21.6 L900,21.9 L925,22.0 L950,21.9 L975,21.5 L1000,21.0 L1000,100 Z"); } 100% { d: path("M0,100 L0,19.4 L25,20.3 L50,21.0 L75,21.6 L100,21.9 L125,22.0 L150,21.9 L175,21.5 L200,21.0 L225,20.2 L250,19.3 L275,18.2 L300,17.1 L325,15.9 L350,14.8 L375,13.6 L400,12.6 L425,11.7 L450,11.0 L475,10.4 L500,10.1 L525,10.0 L550,10.1 L575,10.5 L600,11.0 L625,11.8 L650,12.7 L675,13.8 L700,14.9 L725,16.1 L750,17.2 L775,18.4 L800,19.4 L825,20.3 L850,21.0 L875,21.6 L900,21.9 L925,22.0 L950,21.9 L975,21.5 L1000,21.0 L1000,100 Z"); } }
+}
+</style>
+<style data-8b-part="scene:zones">
+@layer scenes {
+[data-8b-live] #zones .zn__disc { translate: var(--zones-x, 0px) var(--zones-y, 0px); scale: var(--zones-sx, 1) var(--zones-sy, 1); }
+[data-8b-live] #zones .zn__name { translate: 0px var(--zones-lift, 0px); scale: 1 var(--zones-squash, 1); }
+}
+</style>
+<style data-8b-part="scene:airtime">
+@layer scenes {
+[data-8b-live] { --ease-power3-out: linear(0, 0.0963, 0.1855, 0.2679, 0.3439, 0.4138, 0.478, 0.5367, 0.5904, 0.6392, 0.6836, 0.7237, 0.7599, 0.7924, 0.8215, 0.8474, 0.8704, 0.8907, 0.9085, 0.924, 0.9375, 0.9491, 0.959, 0.9674, 0.9744, 0.9802, 0.985, 0.9888, 0.9919, 0.9943, 0.9961, 0.9974, 0.9984, 0.9991, 0.9995, 0.9998, 0.9999, 1, 1, 1, 1); }
+[data-8b-live] #airtime { view-timeline: --airtime-t1 block; view-timeline-inset: 0; }
+[data-8b-live] #airtime .at__img, [data-8b-live] #airtime-title > span:nth-of-type(-n+2), [data-8b-live] #airtime .m-text-5 { animation-timeline: --airtime-t1; animation-fill-mode: both; transform: none; }
+[data-8b-live] #airtime .at__img { animation-name: airtime-img-at-img-scale, airtime-img-at-img-translate; animation-range: cover 0% cover calc(70% - 70vh); animation-timing-function: linear; }
+[data-8b-live] #airtime-title > span:nth-of-type(1) { animation-name: airtime-span-at-line-translate; animation-range: cover 0% cover calc(48% - 48vh); animation-timing-function: var(--ease-power3-out); }
+[data-8b-live] #airtime-title > span:nth-of-type(2) { animation-name: airtime-span-at-line-translate-2; animation-range: cover 0% cover calc(55% - 55vh); animation-timing-function: var(--ease-power3-out); }
+[data-8b-live] #airtime .m-text-5 { animation-name: airtime-p-m-text-5-translate, airtime-p-m-text-5-opacity; animation-range: cover calc(6% - 6vh) cover calc(56% - 56vh); animation-timing-function: var(--ease-power3-out), cubic-bezier(0.25, 1, 0.5, 1); }
+@keyframes airtime-img-at-img-scale { 0% { scale: 1.3; } 100% { scale: 1; } }
+@keyframes airtime-img-at-img-translate { 0% { translate: 0px 6%; } 100% { translate: 0px 0px; } }
+@keyframes airtime-span-at-line-translate { 0% { translate: 0px 55vh; } 100% { translate: 0px 0px; } }
+@keyframes airtime-span-at-line-translate-2 { 0% { translate: 0px 80vh; } 100% { translate: 0px 0px; } }
+@keyframes airtime-p-m-text-5-translate { 0% { translate: 0px 60vh; } 100% { translate: 0px 0px; } }
+@keyframes airtime-p-m-text-5-opacity { 0% { opacity: 0; } 100% { opacity: 1; } }
+}
+</style>
+<style data-8b-part="scene:sessions">
+@property --sessions-ground { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --sessions-glow { syntax: '<number>'; inherits: true; initial-value: 1; }
+@layer scenes {
+[data-8b-live] #sessions, [data-8b-live] #sessions-title, [data-8b-live] #sessions .ss__ticket--glow { animation-timeline: --sessions-t1; animation-timing-function: linear; animation-fill-mode: both; }
+[data-8b-live] #sessions { view-timeline: --sessions-t1 block; view-timeline-inset: 0; animation-name: sessions-sessions---ground; animation-range: cover calc(17.0213% + 37.0213vh) cover calc(82.9787% - 52.0213vh); --ground: var(--sessions-ground); }
+[data-8b-live] #sessions-title { animation-name: sessions-sessions-title-color; animation-range: cover calc(60.6383% - 21.8617vh) cover calc(63.8298% - 26.1702vh); }
+[data-8b-live] #sessions .ss__ticket--glow { animation-name: sessions-li-m-surface---glow; animation-range: cover calc(89.3617% - 60.6383vh) cover calc(100% - 75vh); --glow: var(--sessions-glow); }
+@keyframes sessions-sessions---ground { 0% { --sessions-ground: var(--color-4); } 35.4839% { --sessions-ground: var(--color-5); } 38.7097% { --sessions-ground: var(--color-5); } 70.9677% { --sessions-ground: var(--color-2); } 74.1935% { --sessions-ground: var(--color-2); } 100% { --sessions-ground: var(--color-3); } }
+@keyframes sessions-sessions-title-color { 0% { color: var(--color-3); } 100% { color: var(--color-1); } }
+@keyframes sessions-li-m-surface---glow { 0% { --sessions-glow: 0; } 0.002% { --sessions-glow: 0.001; } 99.998% { --sessions-glow: 0.999; } 100% { --sessions-glow: 1; } }
+}
+</style>
+<style data-8b-part="scene:parties">
+@layer scenes {
+[data-8b-live] #parties .pt__ball { display: block; translate: var(--parties-x, 0px) var(--parties-y, 0px); }
+[data-8b-live] #parties .pt__ball-in { translate: var(--parties-hop-x, 0px) var(--parties-hop-y, 0px); scale: var(--parties-sx, 1) var(--parties-sy, 1); }
+[data-8b-live] #parties .pt__pop { transform-origin: 50% 60%; scale: var(--parties-pop, 1); }
+@media (min-width: 901px) {
+  [data-8b-live] #parties .pt__trail { stroke-dasharray: var(--parties-dash, none); stroke-dashoffset: var(--parties-gap, 0px); }
+}
+}
+</style>
+<style data-8b-part="scene:league">
+@layer scenes {
+[data-8b-live] #league .lg__rows { view-timeline: --league-t1 block; view-timeline-inset: 0; }
+[data-8b-live] #league .lg__rows > li { animation-timeline: --league-t1; animation-range: cover 18vh cover 68vh; animation-timing-function: linear; animation-fill-mode: both; transform: none; }
+@keyframes league-li-m-surface-translate-d { 0% { translate: 0px 180px; } 3.3333% { translate: -3.14px 179.6px; } 6.6667% { translate: -6.24px 178.4px; } 11.6667% { translate: -10.75px 175.1px; } 16.6667% { translate: -15px 170px; } 21.6667% { translate: -18.88px 163.1px; } 26.6667% { translate: -22.29px 154.4px; } 31.6667% { translate: -25.16px 143.9px; } 36.6667% { translate: -27.41px 131.6px; } 41.6667% { translate: -28.98px 117.5px; } 46.6667% { translate: -29.84px 101.6px; } 53.3333% { translate: -29.84px 78.4px; } 58.3333% { translate: -28.98px 62.5px; } 63.3333% { translate: -27.41px 48.4px; } 68.3333% { translate: -25.16px 36.1px; } 73.3333% { translate: -22.29px 25.6px; } 78.3333% { translate: -18.88px 16.9px; } 83.3333% { translate: -15px 10px; } 88.3333% { translate: -10.75px 4.9px; } 93.3333% { translate: -6.24px 1.6px; } 98.3333% { translate: -1.57px 0.1px; } 100% { translate: 0px 0px; } }
+@keyframes league-li-m-surface-translate-m { 0% { translate: 0px 160px; } 5% { translate: -4.69px 159.2px; } 10% { translate: -9.27px 156.8px; } 15% { translate: -13.62px 152.8px; } 20% { translate: -17.63px 147.2px; } 25% { translate: -21.21px 140px; } 30% { translate: -24.27px 131.2px; } 35% { translate: -26.73px 120.8px; } 40% { translate: -28.53px 108.8px; } 45% { translate: -29.63px 95.2px; } 50.01% { translate: -30px 79.97px; } 55% { translate: -29.63px 64.8px; } 60% { translate: -28.53px 51.2px; } 65% { translate: -26.73px 39.2px; } 70% { translate: -24.27px 28.8px; } 75% { translate: -21.21px 20px; } 80% { translate: -17.63px 12.8px; } 85% { translate: -13.62px 7.2px; } 90% { translate: -9.27px 3.2px; } 95% { translate: -4.69px 0.8px; } 100% { translate: 0px 0px; } }
+@keyframes league-li-m-surface-translate-2-d { 0% { translate: 0px -90px; } 6.6667% { translate: 6.24px -89.2px; } 11.6667% { translate: 10.75px -87.55px; } 16.6667% { translate: 15px -85px; } 21.6667% { translate: 18.88px -81.55px; } 26.6667% { translate: 22.29px -77.2px; } 31.6667% { translate: 25.16px -71.95px; } 36.6667% { translate: 27.41px -65.8px; } 41.6667% { translate: 28.98px -58.75px; } 48.3333% { translate: 29.96px -47.95px; } 55% { translate: 29.63px -36.45px; } 60% { translate: 28.53px -28.8px; } 65% { translate: 26.73px -22.05px; } 70% { translate: 24.27px -16.2px; } 75% { translate: 21.21px -11.25px; } 80% { translate: 17.63px -7.2px; } 85% { translate: 13.62px -4.05px; } 90% { translate: 9.27px -1.8px; } 95% { translate: 4.69px -0.45px; } 100% { translate: 0px 0px; } }
+@keyframes league-li-m-surface-translate-2-m { 0% { translate: 0px -80px; } 6.6667% { translate: 6.24px -79.29px; } 13.3333% { translate: 12.2px -77.16px; } 20% { translate: 17.63px -73.6px; } 26.6667% { translate: 22.29px -68.62px; } 33.3333% { translate: 25.98px -62.22px; } 40% { translate: 28.53px -54.4px; } 46.6667% { translate: 29.84px -45.16px; } 53.3333% { translate: 29.84px -34.84px; } 60% { translate: 28.53px -25.6px; } 66.6667% { translate: 25.98px -17.78px; } 73.3333% { translate: 22.29px -11.38px; } 80% { translate: 17.63px -6.4px; } 86.6667% { translate: 12.2px -2.84px; } 93.3333% { translate: 6.24px -0.71px; } 100% { translate: 0px 0px; } }
+@keyframes league-li-m-surface-translate-4-d { 0% { translate: 0px -180px; } 3.3333% { translate: 3.14px -179.6px; } 6.6667% { translate: 6.24px -178.4px; } 11.6667% { translate: 10.75px -175.1px; } 16.6667% { translate: 15px -170px; } 21.6667% { translate: 18.88px -163.1px; } 26.6667% { translate: 22.29px -154.4px; } 31.6667% { translate: 25.16px -143.9px; } 36.6667% { translate: 27.41px -131.6px; } 41.6667% { translate: 28.98px -117.5px; } 46.6667% { translate: 29.84px -101.6px; } 53.3333% { translate: 29.84px -78.4px; } 58.3333% { translate: 28.98px -62.5px; } 63.3333% { translate: 27.41px -48.4px; } 68.3333% { translate: 25.16px -36.1px; } 73.3333% { translate: 22.29px -25.6px; } 78.3333% { translate: 18.88px -16.9px; } 83.3333% { translate: 15px -10px; } 88.3333% { translate: 10.75px -4.9px; } 93.3333% { translate: 6.24px -1.6px; } 98.3333% { translate: 1.57px -0.1px; } 100% { translate: 0px 0px; } }
+@keyframes league-li-m-surface-translate-4-m { 0% { translate: 0px -160px; } 5% { translate: 4.69px -159.2px; } 10% { translate: 9.27px -156.8px; } 15% { translate: 13.62px -152.8px; } 20% { translate: 17.63px -147.2px; } 25% { translate: 21.21px -140px; } 30% { translate: 24.27px -131.2px; } 35% { translate: 26.73px -120.8px; } 40% { translate: 28.53px -108.8px; } 45% { translate: 29.63px -95.2px; } 50.01% { translate: 30px -79.97px; } 55% { translate: 29.63px -64.8px; } 60% { translate: 28.53px -51.2px; } 65% { translate: 26.73px -39.2px; } 70% { translate: 24.27px -28.8px; } 75% { translate: 21.21px -20px; } 80% { translate: 17.63px -12.8px; } 85% { translate: 13.62px -7.2px; } 90% { translate: 9.27px -3.2px; } 95% { translate: 4.69px -0.8px; } 100% { translate: 0px 0px; } }
+@keyframes league-li-m-surface-translate-5-d { 0% { translate: 0px 90px; } 6.6667% { translate: -6.24px 89.2px; } 11.6667% { translate: -10.75px 87.55px; } 16.6667% { translate: -15px 85px; } 21.6667% { translate: -18.88px 81.55px; } 26.6667% { translate: -22.29px 77.2px; } 31.6667% { translate: -25.16px 71.95px; } 36.6667% { translate: -27.41px 65.8px; } 41.6667% { translate: -28.98px 58.75px; } 48.3333% { translate: -29.96px 47.95px; } 55% { translate: -29.63px 36.45px; } 60% { translate: -28.53px 28.8px; } 65% { translate: -26.73px 22.05px; } 70% { translate: -24.27px 16.2px; } 75% { translate: -21.21px 11.25px; } 80% { translate: -17.63px 7.2px; } 85% { translate: -13.62px 4.05px; } 90% { translate: -9.27px 1.8px; } 95% { translate: -4.69px 0.45px; } 100% { translate: 0px 0px; } }
+@keyframes league-li-m-surface-translate-5-m { 0% { translate: 0px 80px; } 6.6667% { translate: -6.24px 79.29px; } 13.3333% { translate: -12.2px 77.16px; } 20% { translate: -17.63px 73.6px; } 26.6667% { translate: -22.29px 68.62px; } 33.3333% { translate: -25.98px 62.22px; } 40% { translate: -28.53px 54.4px; } 46.6667% { translate: -29.84px 45.16px; } 53.3333% { translate: -29.84px 34.84px; } 60% { translate: -28.53px 25.6px; } 66.6667% { translate: -25.98px 17.78px; } 73.3333% { translate: -22.29px 11.38px; } 80% { translate: -17.63px 6.4px; } 86.6667% { translate: -12.2px 2.84px; } 93.3333% { translate: -6.24px 0.71px; } 100% { translate: 0px 0px; } }
+@media (min-width: 481px) {
+  [data-8b-live] #league .lg__rows > li:nth-of-type(1) { animation-name: league-li-m-surface-translate-d; }
+  [data-8b-live] #league .lg__rows > li:nth-of-type(2) { animation-name: league-li-m-surface-translate-2-d; }
+  [data-8b-live] #league .lg__rows > li:nth-of-type(3) { animation-name: league-li-m-surface-translate-d; }
+  [data-8b-live] #league .lg__rows > li:nth-of-type(4) { animation-name: league-li-m-surface-translate-4-d; }
+  [data-8b-live] #league .lg__rows > li:nth-of-type(5) { animation-name: league-li-m-surface-translate-5-d; }
+  [data-8b-live] #league .lg__rows > li:nth-of-type(6) { animation-name: league-li-m-surface-translate-4-d; }
+}
+@media (max-width: 480px) {
+  [data-8b-live] #league .lg__rows > li:nth-of-type(1) { animation-name: league-li-m-surface-translate-m; }
+  [data-8b-live] #league .lg__rows > li:nth-of-type(2) { animation-name: league-li-m-surface-translate-2-m; }
+  [data-8b-live] #league .lg__rows > li:nth-of-type(3) { animation-name: league-li-m-surface-translate-m; }
+  [data-8b-live] #league .lg__rows > li:nth-of-type(4) { animation-name: league-li-m-surface-translate-4-m; }
+  [data-8b-live] #league .lg__rows > li:nth-of-type(5) { animation-name: league-li-m-surface-translate-5-m; }
+  [data-8b-live] #league .lg__rows > li:nth-of-type(6) { animation-name: league-li-m-surface-translate-4-m; }
+}
+}
+</style>
+<style data-8b-part="scene:prices">
+@layer scenes {
+@media (min-width: 701px) {
+  [data-8b-live] #prices .pr__row { view-timeline: --prices-row block; view-timeline-inset: 0; }
+  [data-8b-live] #prices .pr__row > li { animation-name: prices-deal; animation-timeline: --prices-row; animation-range: cover 10vh cover 65vh; animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); animation-fill-mode: both; transform-origin: 50% 150%; }
+}
+@media (max-width: 700px) {
+  [data-8b-live] #prices .pr__row > li:not(:first-child) { animation-name: prices-slide; animation-timeline: view(); animation-range: cover 0% cover 30vh; animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); animation-fill-mode: both; }
+}
+@keyframes prices-deal { 0% { translate: var(--prices-x, 0px) var(--prices-y, 0px); rotate: calc((var(--i, 0) - (var(--n, 1) - 1) / 2) * 9deg); } 100% { translate: 0px 0px; rotate: 0deg; } }
+@keyframes prices-slide { 0% { translate: 0px var(--prices-drop, 0px); rotate: calc(5deg - 10deg * mod(var(--i, 0), 2)); } 100% { translate: 0px 0px; rotate: 0deg; } }
+}
+</style>
+<style data-8b-part="scene:faq">
+@layer scenes {
+[data-8b-live] #faq .fq__mark { translate: 0px var(--faq-y, 0px); scale: var(--faq-sx, 1) var(--faq-sy, 1); }
+}
+</style>
+<style data-8b-part="scene:footer">
+@layer scenes {
+[data-8b-live] #footer .ft__mark-wrap { view-timeline: --footer-mark block; }
+[data-8b-live] #footer .ft__mark .c { display: inline-block; transform-origin: 50% 100%; animation-name: footer-char; animation-timeline: --footer-mark; animation-timing-function: linear; animation-fill-mode: both; animation-range: entry calc(100% * var(--i, 0) * 0.13 / var(--footer-d, 1.11)) entry calc(100% * (var(--i, 0) * 0.13 + 0.59) / var(--footer-d, 1.11)); }
+[data-8b-live] #footer .ft__disc { animation-name: footer-disc; animation-timeline: --footer-mark; animation-timing-function: linear(0, 0.0012, 0.0047, 0.0106, 0.0189, 0.0295, 0.0425, 0.0579, 0.0756, 0.0957, 0.1182, 0.143, 0.1702, 0.1997, 0.2316, 0.2659, 0.3025, 0.3415, 0.3829, 0.4266, 0.4727, 0.5211, 0.5719, 0.6251, 0.6806, 0.7385, 0.7988, 0.8614, 0.9264, 0.9938, 0.9697, 0.9387, 0.91, 0.8837, 0.8597, 0.8381, 0.8189, 0.802, 0.7875, 0.7754, 0.7656, 0.7582, 0.7532, 0.7505, 0.7502, 0.7522, 0.7566, 0.7634, 0.7725, 0.784, 0.7979, 0.8141, 0.8327, 0.8536, 0.8769, 0.9026, 0.9306, 0.961, 0.9938, 0.9867, 0.9727, 0.9609, 0.9516, 0.9446, 0.94, 0.9377, 0.9379, 0.9403, 0.9452, 0.9524, 0.9619, 0.9738, 0.9881, 0.9977, 0.991, 0.9866, 0.9845, 0.9849, 0.9875, 0.9926, 1); animation-fill-mode: both; --footer-turn: -30deg; }
+[data-8b-live] #footer .ft__disc--1 { animation-range: entry calc(100% * .08 / var(--footer-d, 1.11)) entry calc(100% * .53 / var(--footer-d, 1.11)); }
+[data-8b-live] #footer .ft__disc--2 { animation-range: entry calc(100% * .26 / var(--footer-d, 1.11)) entry calc(100% * .71 / var(--footer-d, 1.11)); --footer-turn: 30deg; }
+[data-8b-live] #footer .ft__disc--3 { animation-range: entry calc(100% * .44 / var(--footer-d, 1.11)) entry calc(100% * .89 / var(--footer-d, 1.11)); }
+@keyframes footer-char { 0% { translate: 0px calc(-.8 * var(--footer-top, 0px) - 12px * var(--i, 0)); rotate: calc(-12deg + 26deg * mod(var(--i, 0), 2)); scale: 1; animation-timing-function: cubic-bezier(0.3333, 0, 0.6667, 0); } 57.6271% { translate: 0px 0px; rotate: 0deg; scale: 1; animation-timing-function: cubic-bezier(0.3333, 0.6667, 0.6667, 1); } 66.1017% { scale: 1.14 .74; animation-timing-function: linear(0, 0.1444, 0.278, 0.4011, 0.514, 0.6172, 0.711, 0.7958, 0.872, 0.9399, 1, 1.0526, 1.098, 1.1367, 1.169, 1.1953, 1.216, 1.2314, 1.242, 1.2481, 1.25, 1.2482, 1.243, 1.2348, 1.224, 1.2109, 1.196, 1.1796, 1.162, 1.1437, 1.125, 1.1063, 1.088, 1.0704, 1.054, 1.0391, 1.026, 1.0152, 1.007, 1.0018, 1); } 100% { translate: 0px 0px; rotate: 0deg; scale: 1; } }
+@keyframes footer-disc { 0% { translate: 0px calc(-.3 * var(--footer-top, 0px)); transform: rotate(var(--footer-turn)); } 100% { translate: 0px 0px; transform: none; } }
+}
+</style>
+<script data-8b-part="motion-gate">
+if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.supports('animation-timeline: view()')) document.documentElement.setAttribute('data-8b-live', '');
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Free HTML trampoline park website template with scroll animations and no libraries — Hopla","description":"Free HTML trampoline park website template with scroll animations and no libraries (GSAP build included), for a trampoline park, play centre or family activity venue. One HTML file, MIT, with AGENTS.md for Claude Code, Cursor and Codex. By 8B.","url":"https://8b.com/templates/hopla/","codeRepository":"https://github.com/8bsite/trampoline-park-website-template","license":"https://opensource.org/licenses/MIT","programmingLanguage":["HTML","CSS","JavaScript"],"isAccessibleForFree":true,"image":"https://8bsite.github.io/trampoline-park-website-template/previews/desktop.png","author":{"@type":"Organization","name":"8B","url":"https://8b.com/"}}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -762,7 +904,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
     <div class="op__jumper">
       <div class="op__pop">
         <div class="op__bob" data-loop>
-          <img style="background:#f3f3f3" class="op__img" src="https://images.unsplash.com/photo-1611596534346-94839c5622ab?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8anVtcGluZyUyMG1pZCUyMGFpcnxlbnwxfDB8fHwxNzkxNDAxMjA5fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=500&q=60" alt="A boy in a white shirt mid-jump, arms and legs thrown wide, laughing" width="4441" height="3319" fetchpriority="high">
+          <img class="op__img" src="https://images.unsplash.com/photo-1611596534346-94839c5622ab?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8anVtcGluZyUyMG1pZCUyMGFpcnxlbnwxfDB8fHwxNzkxNDAxMjA5fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=500&q=60" alt="A boy in a white shirt mid-jump, arms and legs thrown wide, laughing" width="4441" height="3319" fetchpriority="high">
         </div>
       </div>
     </div>
@@ -788,67 +930,67 @@ button, input, select, textarea { font: inherit; color: inherit; }
         <p class="m-text-5">From the toddler corner to the slam-dunk lanes, everything at Hopla is padded, coached and built for that bit where your stomach is still on the ground and the rest of you isn't.</p>
         <a class="m-btn-3" href="#zones"><span class="m-btn-3__label">See the zones</span></a>
       </div>
-      <ul class="op__fan">
-        <li class="op__card"><div class="op__card-in"><figure class="m-frame op__frame"><img style="background:#0c2626" src="https://images.unsplash.com/photo-1642932163549-3af44da6017f?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8dHJhbXBvbGluZSUyMGp1bXB8ZW58MXwxfHx8MTc5MTQwMTE4OXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=330&q=60" alt="A young man upside down in a back flip above an orange and blue trampoline" width="3839" height="5756" loading="lazy"></figure><span class="m-badge">Back flips welcome</span></div></li>
-        <li class="op__card"><div class="op__card-in"><figure class="m-frame op__frame"><img src="https://images.unsplash.com/photo-1543816954-1e9d3d4ba69d?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTB8fGtpZHMlMjB0cmFtcG9saW5lfGVufDF8MHx8fDE3OTE0MDExOTF8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=540&q=60" alt="A girl turning a somersault high above a trampoline" width="3637" height="2433" loading="lazy" style="background:#f3f3f3;object-position: 62% 50%"></figure><span class="m-badge-2">Six zones</span></div></li>
-        <li class="op__card"><div class="op__card-in"><figure class="m-frame op__frame"><img style="background:#0cc0d9" src="https://images.unsplash.com/photo-1664919186744-971bb64b1e90?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8dG9kZGxlciUyMHBsYXlpbmclMjBzb2Z0JTIwcGxheXxlbnwxfDB8fHwxNzkxNDAxMjA4fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=590&q=60" alt="A small girl sinking into soft blue and yellow foam blocks" width="6000" height="4000" loading="lazy"></figure><span class="m-badge">Soft landings</span></div></li>
+      <ul class="op__fan" data-8b-items=":scope > li" data-8b-fixed="3">
+        <li class="op__card" style="--opening-li-op-card-rotate-from: 11deg"><div class="op__card-in"><figure class="m-frame op__frame"><img src="https://images.unsplash.com/photo-1642932163549-3af44da6017f?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8dHJhbXBvbGluZSUyMGp1bXB8ZW58MXwxfHx8MTc5MTQwMTE4OXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=290&q=60" alt="A young man upside down in a back flip above an orange and blue trampoline" width="3839" height="5756" loading="lazy"></figure><span class="m-badge">Back flips welcome</span></div></li>
+        <li class="op__card" style="--opening-li-op-card-rotate-from: -3deg"><div class="op__card-in"><figure class="m-frame op__frame"><img src="https://images.unsplash.com/photo-1543816954-1e9d3d4ba69d?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTB8fGtpZHMlMjB0cmFtcG9saW5lfGVufDF8MHx8fDE3OTE0MDExOTF8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=520&q=60" alt="A girl turning a somersault high above a trampoline" width="3637" height="2433" loading="lazy" style="object-position: 62% 50%"></figure><span class="m-badge-2">Six zones</span></div></li>
+        <li class="op__card" style="--opening-li-op-card-rotate-from: -13deg"><div class="op__card-in"><figure class="m-frame op__frame"><img src="https://images.unsplash.com/photo-1664919186744-971bb64b1e90?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8dG9kZGxlciUyMHBsYXlpbmclMjBzb2Z0JTIwcGxheXxlbnwxfDB8fHwxNzkxNDAxMjA4fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=540&q=60" alt="A small girl sinking into soft blue and yellow foam blocks" width="6000" height="4000" loading="lazy"></figure><span class="m-badge">Soft landings</span></div></li>
       </ul>
     </div>
   </div>
 </section>
 <!-- zones: list of six activity zones in a zig-zag: big name, one line, age sticker, round photo (demo: trampoline zones) (animation: scene:zones) -->
 <section id="zones" class="band" data-8b-section="zones" aria-labelledby="zones-title">
-  <svg class="m-wave" data-8b-motion="twang" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
+  <svg class="m-wave" data-8b-motion="twang" data-8b-enter="100%" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
   <div class="wrap">
     <h2 class="m-text-2 zn__title" id="zones-title">One roof, six ways off the ground</h2>
     <p class="m-text-5 zn__lead" data-8b-motion="hop">Every zone has its own coach, its own rules and its own kind of noise. Your wristband moves you between them for as long as your session lasts.</p>
-    <ol class="zn__list">
+    <ol class="zn__list" data-8b-items=":scope > li">
       <li class="zn__row">
-        <figure class="m-disc zn__disc"><img style="background:#262626" src="https://images.unsplash.com/photo-1751235604534-f07bf076d690?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Mnx8a2lkcyUyMHRyYW1wb2xpbmV8ZW58MXwwfHx8MTc5MTQwMTE5MXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=400&q=60" alt="Rows of black trampolines framed by blue and orange padding in an indoor hall" width="5472" height="3648" loading="lazy"></figure>
+        <figure class="m-disc zn__disc"><img src="https://images.unsplash.com/photo-1751235604534-f07bf076d690?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Mnx8a2lkcyUyMHRyYW1wb2xpbmV8ZW58MXwwfHx8MTc5MTQwMTE5MXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=400&q=60" alt="Rows of black trampolines framed by blue and orange padding in an indoor hall" width="5472" height="3648" loading="lazy"></figure>
         <div class="zn__body">
           <h3 class="m-text-4 zn__name">Free Jump Arena</h3>
           <p class="m-text">Forty linked beds and angled walls you can run up. The main hall, the loudest room, the one everybody starts in.</p>
-          <span class="m-badge zn__tag" data-8b-motion="sticker">All ages</span>
+          <span class="m-badge zn__tag" data-8b-motion="sticker" style="--sticker-scale-from: 1.6; --sticker-rotate-from: -18deg; --sticker-rotate-to: -4deg; --sticker-delay: 0s">All ages</span>
         </div>
       </li>
       <li class="zn__row">
-        <figure class="m-disc zn__disc"><img src="https://images.unsplash.com/photo-1751235600651-94bbbeb29567?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8a2lkcyUyMHRyYW1wb2xpbmV8ZW58MXwwfHx8MTc5MTQwMTE5MXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=400&q=60" alt="A long foam pit full of blue blocks beside an obstacle wall" width="5472" height="3648" loading="lazy" style="background:#404040;object-position: 30% 60%"></figure>
+        <figure class="m-disc zn__disc"><img src="https://images.unsplash.com/photo-1751235600651-94bbbeb29567?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8a2lkcyUyMHRyYW1wb2xpbmV8ZW58MXwwfHx8MTc5MTQwMTE5MXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=400&q=60" alt="A long foam pit full of blue blocks beside an obstacle wall" width="5472" height="3648" loading="lazy" style="object-position: 30% 60%"></figure>
         <div class="zn__body">
           <h3 class="m-text-4 zn__name">Foam Pit</h3>
           <p class="m-text">Nine thousand foam blocks, deep enough to swallow a grown-up. Practise the flip here first; nobody is watching, honestly.</p>
-          <span class="m-badge-2 zn__tag" data-8b-motion="sticker">Ages 6+</span>
+          <span class="m-badge-2 zn__tag" data-8b-motion="sticker" style="--sticker-scale-from: 1.6; --sticker-rotate-from: 8deg; --sticker-rotate-to: -4deg; --sticker-delay: 0.08s">Ages 6+</span>
         </div>
       </li>
       <li class="zn__row">
-        <figure class="m-disc zn__disc"><img src="https://images.unsplash.com/photo-1572432421951-3e4c629d57a5?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTN8fHRyYW1wb2xpbmUlMjBqdW1wfGVufDF8MXx8fDE3OTE0MDExODl8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=270&q=60" alt="A man crouched mid-bounce in front of a blue wall of numbered light-up targets" width="4000" height="6000" loading="lazy" style="background:#0c73f3;object-position: 50% 30%"></figure>
+        <figure class="m-disc zn__disc"><img src="https://images.unsplash.com/photo-1572432421951-3e4c629d57a5?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTN8fHRyYW1wb2xpbmUlMjBqdW1wfGVufDF8MXx8fDE3OTE0MDExODl8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=270&q=60" alt="A man crouched mid-bounce in front of a blue wall of numbered light-up targets" width="4000" height="6000" loading="lazy" style="object-position: 50% 30%"></figure>
         <div class="zn__body">
           <h3 class="m-text-4 zn__name">Target Wall</h3>
           <p class="m-text">A wall of light-up targets. Hit them mid-bounce before they go dark; the scoreboard remembers your name.</p>
-          <span class="m-badge zn__tag" data-8b-motion="sticker">Ages 7+</span>
+          <span class="m-badge zn__tag" data-8b-motion="sticker" style="--sticker-scale-from: 1.6; --sticker-rotate-from: -18deg; --sticker-rotate-to: -4deg; --sticker-delay: 0.16s">Ages 7+</span>
         </div>
       </li>
       <li class="zn__row">
-        <figure class="m-disc zn__disc"><img src="https://images.unsplash.com/photo-1779831910104-9ddc66d221f5?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Mnx8b2JzdGFjbGUlMjBjb3Vyc2UlMjBjbGltYmluZ3xlbnwxfDF8fHwxNzkxNDAxMjA1fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=270&q=60" alt="A woman in a red top climbing a steep metal obstacle" width="3300" height="4943" loading="lazy" style="background:#f3f3f3;object-position: 50% 40%"></figure>
+        <figure class="m-disc zn__disc"><img src="https://images.unsplash.com/photo-1779831910104-9ddc66d221f5?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Mnx8b2JzdGFjbGUlMjBjb3Vyc2UlMjBjbGltYmluZ3xlbnwxfDF8fHwxNzkxNDAxMjA1fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=270&q=60" alt="A woman in a red top climbing a steep metal obstacle" width="3300" height="4943" loading="lazy" style="object-position: 50% 40%"></figure>
         <div class="zn__body">
           <h3 class="m-text-4 zn__name">Ninja Wall</h3>
           <p class="m-text">Twelve obstacles, one stopwatch and a padded floor for when your grip gives up. The fastest times go on the league table.</p>
-          <span class="m-badge-2 zn__tag" data-8b-motion="sticker">Ages 8+</span>
+          <span class="m-badge-2 zn__tag" data-8b-motion="sticker" style="--sticker-scale-from: 1.6; --sticker-rotate-from: 8deg; --sticker-rotate-to: -4deg; --sticker-delay: 0s">Ages 8+</span>
         </div>
       </li>
       <li class="zn__row">
-        <figure class="m-disc zn__disc"><img src="https://images.unsplash.com/photo-1728941803861-fbd61eaa2b3e?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8YmFza2V0YmFsbCUyMGR1bmt8ZW58MXwxfHx8MTc5MTQwMTIwNnww&ixlib=rb-4.1.0&auto=format&fit=crop&w=270&q=60" alt="A player flying towards the hoop with the ball raised for a dunk" width="2500" height="3327" loading="lazy" style="background:#595940;object-position: 40% 30%"></figure>
+        <figure class="m-disc zn__disc"><img src="https://images.unsplash.com/photo-1728941803861-fbd61eaa2b3e?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8YmFza2V0YmFsbCUyMGR1bmt8ZW58MXwxfHx8MTc5MTQwMTIwNnww&ixlib=rb-4.1.0&auto=format&fit=crop&w=270&q=60" alt="A player flying towards the hoop with the ball raised for a dunk" width="2500" height="3327" loading="lazy" style="object-position: 40% 30%"></figure>
         <div class="zn__body">
           <h3 class="m-text-4 zn__name">Slam Lanes</h3>
           <p class="m-text">Three trampoline runways that end at hoops of three heights. Everyone dunks here, even the shortest person in your group.</p>
-          <span class="m-badge zn__tag" data-8b-motion="sticker">Ages 6+</span>
+          <span class="m-badge zn__tag" data-8b-motion="sticker" style="--sticker-scale-from: 1.6; --sticker-rotate-from: -18deg; --sticker-rotate-to: -4deg; --sticker-delay: 0.08s">Ages 6+</span>
         </div>
       </li>
       <li class="zn__row">
-        <figure class="m-disc zn__disc"><img src="https://images.unsplash.com/photo-1637672961082-29e47a7632a0?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTJ8fHRyYW1wb2xpbmUlMjBqdW1wfGVufDF8MXx8fDE3OTE0MDExODl8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=270&q=60" alt="A toddler sitting on a trampoline playing with two small balls" width="2000" height="2992" loading="lazy" style="background:#40c0f3;object-position: 50% 70%"></figure>
+        <figure class="m-disc zn__disc"><img src="https://images.unsplash.com/photo-1637672961082-29e47a7632a0?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTJ8fHRyYW1wb2xpbmUlMjBqdW1wfGVufDF8MXx8fDE3OTE0MDExODl8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=270&q=60" alt="A toddler sitting on a trampoline playing with two small balls" width="2000" height="2992" loading="lazy" style="object-position: 50% 70%"></figure>
         <div class="zn__body">
           <h3 class="m-text-4 zn__name">Little Hops</h3>
           <p class="m-text">A quieter corner of small beds, soft walls and slow music, kept for the under-fives and the grown-ups holding their hands.</p>
-          <span class="m-badge-2 zn__tag" data-8b-motion="sticker">Under 5s</span>
+          <span class="m-badge-2 zn__tag" data-8b-motion="sticker" style="--sticker-scale-from: 1.6; --sticker-rotate-from: 8deg; --sticker-rotate-to: -4deg; --sticker-delay: 0.16s">Under 5s</span>
         </div>
       </li>
     </ol>
@@ -858,9 +1000,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 <section id="airtime" data-8b-section="airtime" aria-labelledby="airtime-title">
   <div class="at__hold">
     <div class="at__frame">
-      <img style="background:#a6a6a6" class="at__img" src="https://images.unsplash.com/photo-1658081111999-7a79a3f6b0b7?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8anVtcGluZyUyMG1pZCUyMGFpcnxlbnwxfDB8fHwxNzkxNDAxMjA5fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=1600&q=60" alt="A man caught at the top of a leap against an orange evening sky" width="5634" height="3756" loading="lazy">
+      <img class="at__img" src="https://images.unsplash.com/photo-1658081111999-7a79a3f6b0b7?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8anVtcGluZyUyMG1pZCUyMGFpcnxlbnwxfDB8fHwxNzkxNDAxMjA5fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=1600&q=60" alt="A man caught at the top of a leap against an orange evening sky" width="5634" height="3756" loading="lazy">
       <div class="at__shade" aria-hidden="true"></div>
-      <svg class="m-wave at__wave" data-8b-motion="twang" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
+      <svg class="m-wave at__wave" data-8b-motion="twang" data-8b-enter="100%" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
       <div class="wrap at__copy">
         <h2 class="m-text-3 at__title" id="airtime-title"><span class="at__line">The best bit</span> <span class="at__line">is the middle</span></h2>
         <p class="m-text-5 at__text">Every jump has a moment when you have stopped going up and haven't started coming down. We built a whole shed around that moment.</p>
@@ -870,16 +1012,16 @@ button, input, select, textarea { font: inherit; color: inherit; }
 </section>
 <!-- sessions: timetable of five sessions as tickets: time, name, text, ages, photo (ground turns from morning yellow to night) (animation: scene:sessions) -->
 <section id="sessions" class="band" data-8b-section="sessions" aria-labelledby="sessions-title">
-  <svg class="m-wave ss__wave" data-8b-motion="twang" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
+  <svg class="m-wave ss__wave" data-8b-motion="twang" data-8b-enter="100%" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
   <div class="wrap ss__grid">
     <div class="ss__head">
       <h2 class="m-text-3 ss__title" id="sessions-title">One shed, five crowds</h2>
     </div>
     <div class="ss__main">
       <p class="m-text-5 ss__lead">The same trampolines feel different at half nine in the morning and half nine at night. Pick the crowd that suits you; the day runs from top to bottom.</p>
-      <ol class="ss__list">
+      <ol class="ss__list" data-8b-items=":scope > li" data-8b-fixed="5">
         <li class="m-surface ss__ticket">
-          <figure class="ss__photo"><img style="background:#f3d940" src="https://images.unsplash.com/photo-1654881609317-c3c7d43601c7?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OXx8dG9kZGxlciUyMHBsYXlpbmclMjBzb2Z0JTIwcGxheXxlbnwxfDB8fHwxNzkxNDAxMjA4fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="A small boy peeking out from a pile of big red, yellow, blue and green soft blocks" width="4702" height="3135" loading="lazy"></figure>
+          <figure class="ss__photo"><img src="https://images.unsplash.com/photo-1654881609317-c3c7d43601c7?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OXx8dG9kZGxlciUyMHBsYXlpbmclMjBzb2Z0JTIwcGxheXxlbnwxfDB8fHwxNzkxNDAxMjA4fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="A small boy peeking out from a pile of big red, yellow, blue and green soft blocks" width="4702" height="3135" loading="lazy"></figure>
           <div class="ss__info">
             <p class="m-text-6 ss__time">Weekdays · 9:30 to 12:00</p>
             <h3 class="m-text-4">Little Hops</h3>
@@ -888,7 +1030,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
           </div>
         </li>
         <li class="m-surface ss__ticket">
-          <figure class="ss__photo"><img style="background:#738ca6" src="https://images.unsplash.com/photo-1733997058064-9543cada4754?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8a2lkcyUyMHRyYW1wb2xpbmV8ZW58MXwwfHx8MTc5MTQwMTE5MXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="A little girl landing on her hands on a trampoline while her older sister bounces behind her" width="4501" height="3376" loading="lazy"></figure>
+          <figure class="ss__photo"><img src="https://images.unsplash.com/photo-1733997058064-9543cada4754?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8a2lkcyUyMHRyYW1wb2xpbmV8ZW58MXwwfHx8MTc5MTQwMTE5MXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="A little girl landing on her hands on a trampoline while her older sister bounces behind her" width="4501" height="3376" loading="lazy"></figure>
           <div class="ss__info">
             <p class="m-text-6 ss__time">Every day · 12:00 to 16:00</p>
             <h3 class="m-text-4">Open Jump</h3>
@@ -897,7 +1039,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
           </div>
         </li>
         <li class="m-surface ss__ticket">
-          <figure class="ss__photo"><img style="background:#f3f3f3" src="https://images.unsplash.com/photo-1633465623068-c34e257706c8?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8ZnJpZW5kcyUyMGxhdWdoaW5nJTIwdGVlbmFnZXJzfGVufDF8MHx8fDE3OTE0MDEyNjd8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="A group of teenagers in black hoodies pulling faces for the camera" width="6000" height="4000" loading="lazy"></figure>
+          <figure class="ss__photo"><img src="https://images.unsplash.com/photo-1633465623068-c34e257706c8?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8ZnJpZW5kcyUyMGxhdWdoaW5nJTIwdGVlbmFnZXJzfGVufDF8MHx8fDE3OTE0MDEyNjd8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="A group of teenagers in black hoodies pulling faces for the camera" width="6000" height="4000" loading="lazy"></figure>
           <div class="ss__info">
             <p class="m-text-6 ss__time">Weekdays · 16:00 to 18:30</p>
             <h3 class="m-text-4">After School</h3>
@@ -906,7 +1048,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
           </div>
         </li>
         <li class="m-surface ss__ticket">
-          <figure class="ss__photo"><img style="background:#d9f3f3" src="https://images.unsplash.com/photo-1637666249580-a0bef8943587?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8anVtcGluZyUyMGZpdG5lc3MlMjBjbGFzc3xlbnwxfDB8fHwxNzkxNDAxMjY1fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="Four people leaping together in a bright fitness studio" width="5581" height="3721" loading="lazy"></figure>
+          <figure class="ss__photo"><img src="https://images.unsplash.com/photo-1637666249580-a0bef8943587?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8anVtcGluZyUyMGZpdG5lc3MlMjBjbGFzc3xlbnwxfDB8fHwxNzkxNDAxMjY1fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="Four people leaping together in a bright fitness studio" width="5581" height="3721" loading="lazy"></figure>
           <div class="ss__info">
             <p class="m-text-6 ss__time">Tue and Thu · 18:45 to 19:30</p>
             <h3 class="m-text-4">Rebound</h3>
@@ -915,7 +1057,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
           </div>
         </li>
         <li class="m-surface ss__ticket ss__ticket--glow">
-          <figure class="ss__photo"><img style="background:#0c73d9" src="https://images.unsplash.com/photo-1768885515007-160a49b6635e?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8bmVvbiUyMHBhcnR5JTIwZGFuY2luZ3xlbnwxfDB8fHwxNzkxNDAxMjY2fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="Silhouettes of people in a room lit blue and pink by neon tubes" width="5952" height="3968" loading="lazy"></figure>
+          <figure class="ss__photo"><img src="https://images.unsplash.com/photo-1768885515007-160a49b6635e?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8bmVvbiUyMHBhcnR5JTIwZGFuY2luZ3xlbnwxfDB8fHwxNzkxNDAxMjY2fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="Silhouettes of people in a room lit blue and pink by neon tubes" width="5952" height="3968" loading="lazy"></figure>
           <div class="ss__info">
             <p class="m-text-6 ss__time">Fri and Sat · 19:30 to 22:00</p>
             <h3 class="m-text-4">Glow Night</h3>
@@ -929,7 +1071,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 </section>
 <!-- parties: birthday parties: heading, text, price line, button, and a five-step route with numbered tilted photos (animation: scene:parties) -->
 <section id="parties" class="band" data-8b-section="parties" aria-labelledby="parties-title">
-  <svg class="m-wave" data-8b-motion="twang" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
+  <svg class="m-wave" data-8b-motion="twang" data-8b-enter="100%" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
   <div class="wrap">
     <div class="pt__head">
       <h2 class="m-text-3 pt__title" id="parties-title" data-8b-motion="hop">Birthday parties, sorted</h2>
@@ -941,25 +1083,25 @@ button, input, select, textarea { font: inherit; color: inherit; }
     </div>
     <div class="pt__route">
       <svg class="pt__path" viewBox="0 0 1000 1560" aria-hidden="true" focusable="false"><path class="pt__dash" d="M220,127.5 C313.3,175.8 766.7,317.5 780,417.5 C793.3,517.5 296.7,629.2 300,727.5 C303.3,825.8 783.3,909.2 800,1007.5 C816.7,1105.8 466.7,1265.8 400,1317.5"/><path class="pt__trail" d="M220,127.5 C313.3,175.8 766.7,317.5 780,417.5 C793.3,517.5 296.7,629.2 300,727.5 C303.3,825.8 783.3,909.2 800,1007.5 C816.7,1105.8 466.7,1265.8 400,1317.5"/></svg>
-      <ol class="pt__stops">
+      <ol class="pt__stops" data-8b-items=":scope > li" data-8b-fixed="5">
         <li class="pt__stop">
-          <div class="pt__pop"><figure class="m-frame pt__photo"><img style="background:#d9d9d9" src="https://images.unsplash.com/photo-1756621716318-9eec89d42715?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MjN8fGtpZHMlMjBiaXJ0aGRheSUyMHBhcnR5fGVufDF8MHx8fDE3OTE0MDEyMTB8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=560&q=60" alt="Two small children standing in front of a pastel balloon arch" width="6000" height="4000" loading="lazy"></figure></div>
+          <div class="pt__pop"><figure class="m-frame pt__photo"><img src="https://images.unsplash.com/photo-1756621716318-9eec89d42715?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MjN8fGtpZHMlMjBiaXJ0aGRheSUyMHBhcnR5fGVufDF8MHx8fDE3OTE0MDEyMTB8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=560&q=60" alt="Two small children standing in front of a pastel balloon arch" width="6000" height="4000" loading="lazy"></figure></div>
           <div class="pt__cap"><p class="m-text-4"><span class="pt__num">1</span> Arrive</p><p class="m-text">Your host meets you at the door with balloons, a table with your name on it and red grip socks for every guest.</p></div>
         </li>
         <li class="pt__stop">
-          <div class="pt__pop"><figure class="m-frame pt__photo"><img style="background:#f3f3f3" src="https://images.unsplash.com/photo-1543874512-d68ca3efea69?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OXx8a2lkcyUyMHRyYW1wb2xpbmV8ZW58MXwwfHx8MTc5MTQwMTE5MXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="A boy turning a front flip over a trampoline while a girl watches" width="3637" height="2433" loading="lazy"></figure></div>
+          <div class="pt__pop"><figure class="m-frame pt__photo"><img src="https://images.unsplash.com/photo-1543874512-d68ca3efea69?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OXx8a2lkcyUyMHRyYW1wb2xpbmV8ZW58MXwwfHx8MTc5MTQwMTE5MXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="A boy turning a front flip over a trampoline while a girl watches" width="3637" height="2433" loading="lazy"></figure></div>
           <div class="pt__cap"><p class="m-text-4"><span class="pt__num">2</span> Jump</p><p class="m-text">An hour on the courts with a coach of your own: games, a foam pit challenge and a slam-dunk contest for the birthday star.</p></div>
         </li>
         <li class="pt__stop">
-          <div class="pt__pop"><figure class="m-frame pt__photo"><img src="https://images.unsplash.com/photo-1615445565741-c60a9edd393f?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTJ8fGtpZHMlMjBiaXJ0aGRheSUyMHBhcnR5fGVufDF8MHx8fDE3OTE0MDEyMTB8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=520&q=60" alt="A grinning boy in a party hat and bow tie between balloons and tinsel" width="4774" height="3437" loading="lazy" style="background:#f3a640;object-position: 40% 40%"></figure></div>
+          <div class="pt__pop"><figure class="m-frame pt__photo"><img src="https://images.unsplash.com/photo-1615445565741-c60a9edd393f?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTJ8fGtpZHMlMjBiaXJ0aGRheSUyMHBhcnR5fGVufDF8MHx8fDE3OTE0MDEyMTB8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=520&q=60" alt="A grinning boy in a party hat and bow tie between balloons and tinsel" width="4774" height="3437" loading="lazy" style="object-position: 40% 40%"></figure></div>
           <div class="pt__cap"><p class="m-text-4"><span class="pt__num">3</span> Party room</p><p class="m-text">Pizza, squash, fruit and paper hats. The room is yours for forty-five minutes and the mess is ours.</p></div>
         </li>
         <li class="pt__stop">
-          <div class="pt__pop"><figure class="m-frame pt__photo"><img style="background:#262626" src="https://images.unsplash.com/photo-1650584997985-e713a869ee77?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MjF8fGtpZHMlMjBiaXJ0aGRheSUyMHBhcnR5fGVufDF8MHx8fDE3OTE0MDEyMTB8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="A girl leaning in to blow out the candles on a chocolate cake" width="5184" height="3456" loading="lazy"></figure></div>
+          <div class="pt__pop"><figure class="m-frame pt__photo"><img src="https://images.unsplash.com/photo-1650584997985-e713a869ee77?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MjF8fGtpZHMlMjBiaXJ0aGRheSUyMHBhcnR5fGVufDF8MHx8fDE3OTE0MDEyMTB8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=570&q=60" alt="A girl leaning in to blow out the candles on a chocolate cake" width="5184" height="3456" loading="lazy"></figure></div>
           <div class="pt__cap"><p class="m-text-4"><span class="pt__num">4</span> Cake</p><p class="m-text">Bring your own or order ours. We dim the lights, the whole room sings and the candles go out on the first blow.</p></div>
         </li>
         <li class="pt__stop">
-          <div class="pt__pop"><figure class="m-frame pt__photo"><img style="background:#260c0c" src="https://images.unsplash.com/photo-1552117569-d955325e2a22?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MjJ8fGtpZHMlMjBiaXJ0aGRheSUyMHBhcnR5fGVufDF8MHx8fDE3OTE0MDEyMTB8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=560&q=60" alt="A girl seen from behind looking up at a pink balloon" width="6000" height="4000" loading="lazy"></figure></div>
+          <div class="pt__pop"><figure class="m-frame pt__photo"><img src="https://images.unsplash.com/photo-1552117569-d955325e2a22?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MjJ8fGtpZHMlMjBiaXJ0aGRheSUyMHBhcnR5fGVufDF8MHx8fDE3OTE0MDEyMTB8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=560&q=60" alt="A girl seen from behind looking up at a pink balloon" width="6000" height="4000" loading="lazy"></figure></div>
           <div class="pt__cap"><p class="m-text-4"><span class="pt__num">5</span> Home time</p><p class="m-text">Every guest leaves with a party bag, a balloon and a story about the flip they nearly did.</p></div>
         </li>
       </ol>
@@ -969,17 +1111,17 @@ button, input, select, textarea { font: inherit; color: inherit; }
 </section>
 <!-- landing: on-site café: wide photo, round coffee photo, sticker, text, short price list -->
 <section id="landing" class="band" data-8b-section="landing" aria-labelledby="landing-title">
-  <svg class="m-wave" data-8b-motion="twang" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
+  <svg class="m-wave" data-8b-motion="twang" data-8b-enter="100%" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
   <div class="wrap ld__grid">
     <div class="ld__pics">
-      <figure class="m-frame ld__hall"><img style="background:#404040" src="https://images.unsplash.com/photo-1751235641041-d5037f5ceb87?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8a2lkcyUyMHRyYW1wb2xpbmV8ZW58MXwwfHx8MTc5MTQwMTE5MXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=700&q=60" alt="Long orange tables at the edge of an indoor trampoline hall with slides and courts behind" width="5472" height="3648" loading="lazy"></figure>
-      <figure class="m-disc ld__cup"><img style="background:#73400c" src="https://images.unsplash.com/photo-1681838853984-697bbb001257?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTV8fGxhdHRlJTIwY29mZmVlJTIwY3VwfGVufDF8MXx8fDE3OTE0MDEyNjZ8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=270&q=60" alt="A cappuccino with leaf latte art on a wooden table" width="3024" height="4032" loading="lazy"></figure>
-      <span class="m-badge-2 ld__tag" data-8b-motion="sticker">Window seats</span>
+      <figure class="m-frame ld__hall"><img src="https://images.unsplash.com/photo-1751235641041-d5037f5ceb87?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8a2lkcyUyMHRyYW1wb2xpbmV8ZW58MXwwfHx8MTc5MTQwMTE5MXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=700&q=60" alt="Long orange tables at the edge of an indoor trampoline hall with slides and courts behind" width="5472" height="3648" loading="lazy"></figure>
+      <figure class="m-disc ld__cup"><img src="https://images.unsplash.com/photo-1681838853984-697bbb001257?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTV8fGxhdHRlJTIwY29mZmVlJTIwY3VwfGVufDF8MXx8fDE3OTE0MDEyNjZ8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=270&q=60" alt="A cappuccino with leaf latte art on a wooden table" width="3024" height="4032" loading="lazy"></figure>
+      <span class="m-badge-2 ld__tag" data-8b-motion="sticker" style="--sticker-scale-from: 1.6; --sticker-rotate-from: -20deg; --sticker-rotate-to: -6deg; --sticker-delay: 0s">Window seats</span>
     </div>
     <div class="ld__copy">
       <h2 class="m-text-3 ld__title" id="landing-title" data-8b-motion="hop">The Landing</h2>
       <p class="m-text-5" data-8b-motion="hop">A café for the people holding the coats. Proper coffee, hot food all day and a long window over the main arena, so you can wave without standing up.</p>
-      <dl class="ld__menu" data-8b-motion="hop">
+      <dl class="ld__menu" data-8b-items=":scope > div" data-8b-motion="hop">
         <div><dt class="m-text">Flat white</dt><dd class="m-text-6">£3.10</dd></div>
         <div><dt class="m-text">Hot chocolate with everything</dt><dd class="m-text-6">£3.40</dd></div>
         <div><dt class="m-text">Cheese toastie</dt><dd class="m-text-6">£5.20</dd></div>
@@ -993,13 +1135,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
 </section>
 <!-- league: ranking table of six results on a dark field, with heading, text, entry link and photo (demo: ninja wall times) (animation: scene:league) -->
 <section id="league" class="band" data-8b-section="league" aria-labelledby="league-title">
-  <svg class="m-wave" data-8b-motion="twang" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
+  <svg class="m-wave" data-8b-motion="twang" data-8b-enter="100%" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
   <div class="wrap lg__grid">
     <div class="lg__head">
       <h2 class="m-text-3 lg__title" id="league-title">Ninja Wall League</h2>
       <p class="m-text-5">Twelve obstacles against the clock. The table settles every Sunday night, and the fastest time of the month wins a year of free jumping.</p>
       <a class="m-link" href="#contact">Enter this month's league</a>
-      <figure class="m-frame lg__photo"><img src="https://images.unsplash.com/photo-1730097248340-8d45cb8259f8?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8b2JzdGFjbGUlMjBjb3Vyc2UlMjBjbGltYmluZ3xlbnwxfDF8fHwxNzkxNDAxMjA1fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=370&q=60" alt="A tattooed man hauling himself up a steep metal climbing frame" width="4672" height="7008" loading="lazy" style="background:#d9d9d9;object-position: 50% 30%"></figure>
+      <figure class="m-frame lg__photo"><img src="https://images.unsplash.com/photo-1730097248340-8d45cb8259f8?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8b2JzdGFjbGUlMjBjb3Vyc2UlMjBjbGltYmluZ3xlbnwxfDF8fHwxNzkxNDAxMjA1fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=370&q=60" alt="A tattooed man hauling himself up a steep metal climbing frame" width="4672" height="7008" loading="lazy" style="object-position: 50% 30%"></figure>
     </div>
     <div class="lg__board">
       <p class="m-text-6 lg__caption">October, after four Sundays</p>
@@ -1007,7 +1149,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
         <ol class="lg__ranks" aria-hidden="true">
           <li class="m-text-4">1</li><li class="m-text-4">2</li><li class="m-text-4">3</li><li class="m-text-4">4</li><li class="m-text-4">5</li><li class="m-text-4">6</li>
         </ol>
-        <ol class="lg__rows" aria-label="This month's six fastest times">
+        <ol class="lg__rows" data-8b-items=":scope > li" aria-label="This month's six fastest times" data-8b-fixed="6">
           <li class="m-surface lg__row" data-week="3"><span class="m-text-4 lg__name">Maisie R.</span><span class="m-text-6 lg__group">Under 12</span><span class="m-text-4 lg__time">41.82 s</span></li>
           <li class="m-surface lg__row" data-week="1"><span class="m-text-4 lg__name">Dev P.</span><span class="m-text-6 lg__group">Adults</span><span class="m-text-4 lg__time">42.10 s</span></li>
           <li class="m-surface lg__row" data-week="5"><span class="m-text-4 lg__name">Tomasz K.</span><span class="m-text-6 lg__group">Adults</span><span class="m-text-4 lg__time">43.57 s</span></li>
@@ -1022,30 +1164,30 @@ button, input, select, textarea { font: inherit; color: inherit; }
 </section>
 <!-- rules: red wall of five tilted rule stickers and one photo (house rules) -->
 <section id="rules" class="band" data-8b-section="rules" aria-labelledby="rules-title">
-  <svg class="m-wave" data-8b-motion="twang" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
+  <svg class="m-wave" data-8b-motion="twang" data-8b-enter="100%" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
   <div class="wrap">
     <h2 class="m-text-3 rl__title" id="rules-title" data-8b-motion="hop">House rules, short version</h2>
     <div class="rl__wall">
-      <ul class="rl__list">
-        <li class="rl__rule" data-8b-motion="sticker"><p class="m-text-4">Grip socks on</p><p class="m-text">Ours are red, cost £2.50 and are yours to keep. Bare feet and normal socks slip.</p></li>
-        <li class="rl__rule" data-8b-motion="sticker"><p class="m-text-4">One per bed</p><p class="m-text">One jumper on each trampoline at a time. The coaches will remind you, loudly and kindly.</p></li>
-        <li class="rl__rule" data-8b-motion="sticker"><p class="m-text-4">Flips with a coach</p><p class="m-text">Somersaults only in the foam pit or with a coach watching. Everywhere else, feet first.</p></li>
-        <li class="rl__rule" data-8b-motion="sticker"><p class="m-text-4">Pockets empty</p><p class="m-text">Phones, keys and coins go in the free lockers. Trampoline springs eat them.</p></li>
-        <li class="rl__rule" data-8b-motion="sticker"><p class="m-text-4">Waiver first</p><p class="m-text">Every jumper needs a signed waiver. Do it online before you come and skip the queue.</p></li>
+      <ul class="rl__list" data-8b-items=":scope > li">
+        <li class="rl__rule" data-8b-motion="sticker" style="--sticker-scale-from: 1.18; --sticker-rotate-from: -16.5deg; --sticker-rotate-to: -2.5deg; --sticker-delay: 0s"><p class="m-text-4">Grip socks on</p><p class="m-text">Ours are red, cost £2.50 and are yours to keep. Bare feet and normal socks slip.</p></li>
+        <li class="rl__rule" data-8b-motion="sticker" style="--sticker-scale-from: 1.18; --sticker-rotate-from: 14deg; --sticker-rotate-to: 2deg; --sticker-delay: 0.08s"><p class="m-text-4">One per bed</p><p class="m-text">One jumper on each trampoline at a time. The coaches will remind you, loudly and kindly.</p></li>
+        <li class="rl__rule" data-8b-motion="sticker" style="--sticker-scale-from: 1.18; --sticker-rotate-from: -16.5deg; --sticker-rotate-to: -2.5deg; --sticker-delay: 0.16s"><p class="m-text-4">Flips with a coach</p><p class="m-text">Somersaults only in the foam pit or with a coach watching. Everywhere else, feet first.</p></li>
+        <li class="rl__rule" data-8b-motion="sticker" style="--sticker-scale-from: 1.18; --sticker-rotate-from: 14deg; --sticker-rotate-to: 2deg; --sticker-delay: 0s"><p class="m-text-4">Pockets empty</p><p class="m-text">Phones, keys and coins go in the free lockers. Trampoline springs eat them.</p></li>
+        <li class="rl__rule" data-8b-motion="sticker" style="--sticker-scale-from: 1.18; --sticker-rotate-from: -16.5deg; --sticker-rotate-to: -2.5deg; --sticker-delay: 0.08s"><p class="m-text-4">Waiver first</p><p class="m-text">Every jumper needs a signed waiver. Do it online before you come and skip the queue.</p></li>
       </ul>
-      <figure class="m-frame rl__socks" data-8b-motion="sticker"><img style="background:#f3f3f3" src="https://images.unsplash.com/photo-1580973757787-e22cdecb9cd5?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Mnx8c29ja3MlMjBmZWV0JTIwY29sb3JmdWx8ZW58MXwwfHx8MTc5MTQwMTI2OXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=790&q=60" alt="Two feet in rainbow striped socks raised against a white background" width="5184" height="3456" loading="lazy"></figure>
+      <figure class="m-frame rl__socks" data-8b-motion="sticker" style="--sticker-scale-from: 1.18; --sticker-rotate-from: 18deg; --sticker-rotate-to: 6deg; --sticker-delay: 0.16s"><img src="https://images.unsplash.com/photo-1580973757787-e22cdecb9cd5?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Mnx8c29ja3MlMjBmZWV0JTIwY29sb3JmdWx8ZW58MXwwfHx8MTc5MTQwMTI2OXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=1030&q=60" alt="Two feet in rainbow striped socks raised against a white background" width="5184" height="3456" loading="lazy"></figure>
     </div>
   </div>
 </section>
 <!-- prices: five ticket-shaped passes with name, price and one line, plus two buttons (animation: scene:prices) -->
 <section id="prices" class="band" data-8b-section="prices" aria-labelledby="prices-title">
-  <svg class="m-wave" data-8b-motion="twang" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
+  <svg class="m-wave" data-8b-motion="twang" data-8b-enter="100%" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
   <div class="wrap">
     <div class="pr__head">
       <h2 class="m-text-3 pr__title" id="prices-title" data-8b-motion="hop">Pick a pass</h2>
       <p class="m-text-5">Prices per jumper. Grip socks are £2.50 and yours to keep; spectators come in free.</p>
     </div>
-    <ul class="pr__row">
+    <ul class="pr__row" data-8b-items=":scope > li" data-8b-fixed="5">
       <li class="m-surface pr__pass"><h3 class="m-text-4">Hour Jump</h3><p class="pr__price">£14</p><p class="m-text">Sixty minutes, every zone, any day.</p></li>
       <li class="m-surface pr__pass"><h3 class="m-text-4">Long Jump</h3><p class="pr__price">£18</p><p class="m-text">Ninety minutes, for people who don't want to go home.</p></li>
       <li class="m-surface pr__pass"><h3 class="m-text-4">Little Hops</h3><p class="pr__price">£8.50</p><p class="m-text">Under 5s on weekday mornings; one grown-up jumps free.</p></li>
@@ -1060,7 +1202,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 </section>
 <!-- faq: questions and answers (native <details>) next to a heading and a phone line (animation: scene:faq) -->
 <section id="faq" class="band" data-8b-section="faq" aria-labelledby="faq-title">
-  <svg class="m-wave" data-8b-motion="twang" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
+  <svg class="m-wave" data-8b-motion="twang" data-8b-enter="100%" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
   <div class="wrap fq__grid">
     <div class="fq__head">
       <h2 class="m-text-3 fq__title" id="faq-title">Asked a lot</h2>
@@ -1081,7 +1223,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 </section>
 <!-- contact: address, opening hours, phone, email, directions and a booking request form (placeholders) -->
 <section id="contact" class="band" data-8b-section="contact" aria-labelledby="contact-title">
-  <svg class="m-wave" data-8b-motion="twang" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
+  <svg class="m-wave" data-8b-motion="twang" data-8b-enter="100%" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
   <div class="wrap ct__grid">
     <div class="ct__info">
       <h2 class="m-text-3 ct__title" id="contact-title" data-8b-motion="hop">Come and jump</h2>
@@ -1094,7 +1236,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
       </dl>
       <p class="ct__links"><a data-8b-placeholder="phone" class="m-link" href="tel:+441140000000">0114 000 0000</a><a data-8b-placeholder="email" class="m-link" href="mailto:hello@hopla.example">hello@hopla.example</a></p>
       <p class="m-text ct__way">Forty free parking spaces in the yard; Shalesmoor tram stop is two minutes away on foot.</p>
-      <span class="m-badge ct__tag" data-8b-motion="sticker">Free parking</span>
+      <span class="m-badge ct__tag" data-8b-motion="sticker" style="--sticker-scale-from: 1.6; --sticker-rotate-from: -19deg; --sticker-rotate-to: -5deg; --sticker-delay: 0s">Free parking</span>
     </div>
     <form data-8b-placeholder="form" class="m-surface ct__form" action="#" method="post" novalidate>
       <h3 class="m-text-4">Ask for a slot</h3>
@@ -1123,7 +1265,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 </main>
 <!-- footer: links, address and phone, copyright with the Design: 8B credit, a giant outlined HOPLA wordmark with three round photos (animation: scene:footer) -->
 <footer id="footer" data-8b-section="footer">
-  <svg class="m-wave" data-8b-motion="twang" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
+  <svg class="m-wave" data-8b-motion="twang" data-8b-enter="100%" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,100 L0,60.2 L25,62.9 L50,65.1 L75,66.7 L100,67.7 L125,68.0 L150,67.6 L175,66.6 L200,64.9 L225,62.6 L250,59.8 L275,56.7 L300,53.3 L325,49.8 L350,46.3 L375,42.9 L400,39.8 L425,37.1 L450,34.9 L475,33.3 L500,32.3 L525,32.0 L550,32.4 L575,33.4 L600,35.1 L625,37.4 L650,40.2 L675,43.3 L700,46.7 L725,50.2 L750,53.7 L775,57.1 L800,60.2 L825,62.9 L850,65.1 L875,66.7 L900,67.7 L925,68.0 L950,67.6 L975,66.6 L1000,64.9 L1000,100 Z"/></svg>
   <div class="wrap">
     <div class="ft__top">
       <nav class="ft__links" aria-label="Footer">
@@ -1140,157 +1282,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
       <p class="m-text-6">Grip socks on, phones away, feet first.</p>
     </div>
     <div class="ft__mark-wrap">
-      <p class="ft__mark m-text-2" style="--len:5">Hopla</p>
-      <figure class="m-disc ft__disc ft__disc--1"><img style="background:#f3c059" src="https://images.unsplash.com/photo-1748498311046-9709d51693ac?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OHx8Zm9hbSUyMGJsb2Nrc3xlbnwxfDB8fHwxNzkxNDAxMjY0fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=210&q=60" alt="" width="7680" height="4320" loading="lazy"></figure>
-      <figure class="m-disc ft__disc ft__disc--2"><img style="background:#d9d9d9" src="https://images.unsplash.com/photo-1634788699036-dc0d8cff7aca?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8anVtcGluZyUyMGZpdG5lc3MlMjBjbGFzc3xlbnwxfDB8fHwxNzkxNDAxMjY1fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=170&q=60" alt="" width="4046" height="2697" loading="lazy"></figure>
-      <figure class="m-disc ft__disc ft__disc--3"><img style="background:#f3d9d9" src="https://images.unsplash.com/photo-1634788699036-32a5ef83a8c8?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8anVtcGluZyUyMGZpdG5lc3MlMjBjbGFzc3xlbnwxfDB8fHwxNzkxNDAxMjY1fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=160&q=60" alt="" width="3456" height="2304" loading="lazy"></figure>
+      <p class="ft__mark m-text-2" style="--len:5" data-8b-split="chars">Hopla</p>
+      <figure class="m-disc ft__disc ft__disc--1"><img src="https://images.unsplash.com/photo-1748498311046-9709d51693ac?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OHx8Zm9hbSUyMGJsb2Nrc3xlbnwxfDB8fHwxNzkxNDAxMjY0fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=260&q=60" alt="" width="7680" height="4320" loading="lazy"></figure>
+      <figure class="m-disc ft__disc ft__disc--2"><img src="https://images.unsplash.com/photo-1634788699036-dc0d8cff7aca?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8anVtcGluZyUyMGZpdG5lc3MlMjBjbGFzc3xlbnwxfDB8fHwxNzkxNDAxMjY1fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=220&q=60" alt="" width="4046" height="2697" loading="lazy"></figure>
+      <figure class="m-disc ft__disc ft__disc--3"><img src="https://images.unsplash.com/photo-1634788699036-32a5ef83a8c8?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8anVtcGluZyUyMGZpdG5lc3MlMjBjbGFzc3xlbnwxfDB8fHwxNzkxNDAxMjY1fDA&ixlib=rb-4.1.0&auto=format&fit=crop&w=220&q=60" alt="" width="3456" height="2304" loading="lazy"></figure>
     </div>
   </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
-<script data-8b-part="motion-queue">
-(() => {
-  'use strict';
-  const fonts = document.fonts ? document.fonts.ready : Promise.resolve();
-  const parsed = document.readyState === 'loading' ? new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve, { once: true })) : Promise.resolve();
-  const ready = () => Promise.all([fonts, parsed]).then(() => firsts);
-  const nextTask = () => window.scheduler?.yield?.() ?? new Promise(resolve => setTimeout(resolve));
-  const refresh = () => {
-    if (typeof window.refreshScroll === 'function') return window.refreshScroll();
-    window.ScrollTrigger?.sort(); window.ScrollTrigger?.refresh();
-  };
-  const run = (setup, name) => {
-    for (const trigger of window.ScrollTrigger?.getAll() || []) if (!trigger.end && window.ScrollTrigger.getAll().includes(trigger)) trigger.refresh(0, 1);
-    const context = window.gsap.context(() => {});
-    const log = new MutationObserver(() => {});
-    log.observe(document.documentElement, { attributes: true, attributeOldValue: true, subtree: true });
-    let failure = null, records;
-    try { context.add(() => { try { setup(); } catch (error) { failure = error; } }); }
-    finally { records = log.takeRecords(); log.disconnect(); }
-    if (!failure) return true;
-    try { context.revert(); } catch (error) { console.error(name, 'revert failed', error); }
-    for (const { target, attributeName, oldValue } of records.reverse()) {
-      const now = target.getAttribute(attributeName);
-      if (oldValue == null) { if (now != null) target.removeAttribute(attributeName); }
-      else if (now !== oldValue) target.setAttribute(attributeName, oldValue);
-    }
-    console.error(name, failure);
-    return false;
-  };
-  let firsts = Promise.resolve(), tail = null, pending = 0, lazy = null, building = 0, firstCount = 0;
-  window.motionReady = ready();
-  parsed.then(() => { if (firstCount && !tail) firsts.then(refresh); });
-  window.queueMotion = (setup, { first = false, near, id } = {}) => {
-    if (!window.gsap || typeof setup !== 'function') return;
-    const name = id || document.currentScript?.getAttribute('data-8b-part') || 'motion';
-    if (near instanceof Element && window.IntersectionObserver) {
-      const watch = new IntersectionObserver(entries => {
-        if (!entries.some(entry => entry.isIntersecting)) return;
-        watch.disconnect();
-        building++;
-        lazy = (lazy || ready()).then(nextTask).then(() => run(setup, name)).finally(() => { if (!--building) refresh(); });
-      }, { rootMargin: '100% 0px' });
-      watch.observe(near);
-      return;
-    }
-    if (first) { firstCount++; firsts = firsts.then(() => fonts).then(() => { if (!run(setup, name)) refresh(); }); }
-    else {
-      pending++;
-      tail = (tail || ready()).then(nextTask).then(() => run(setup, name))
-        .finally(() => { if (!--pending) refresh(); });
-    }
-    window.motionReady = Promise.all([firsts, tail]);
-  };
-})();
-</script>
-<script data-8b-part="page-init">
-gsap.registerPlugin(ScrollTrigger, SplitText, MotionPathPlugin);
-function navHeight() { const nav = document.getElementById('nav'); return nav ? nav.offsetHeight : 0; }
-function refreshScroll() { ScrollTrigger.sort(); ScrollTrigger.refresh(); }
-gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-  const lenis = window.lenis = new Lenis({ lerp: .085, anchors: { offset: -navHeight() } });
-  const tick = time => lenis.raf(time * 1000);
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(tick); gsap.ticker.lagSmoothing(0);
-  return () => { gsap.ticker.remove(tick); gsap.ticker.lagSmoothing(500, 33); lenis.destroy(); window.lenis = null; };
-});
-</script>
-<script data-8b-part="motion">
-const WAVE = { amp: 18, cycles: 1.25, phase: .6 };
-function wavePath(sag = 0, base = 50, amp = WAVE.amp) {
-  let d = 'M0,100';
-  for (let x = 0; x <= 1000; x += 25) {
-    const y = base + amp * Math.sin(x / 1000 * Math.PI * 2 * WAVE.cycles + WAVE.phase) + sag * Math.exp(-(((x - 500) / 230) ** 2));
-    d += ` L${x},${Math.min(100, y).toFixed(1)}`;
-  }
-  return d + ' L1000,100 Z';
-}
-function waveDriver(svg) {
-  const path = svg.querySelector('path');
-  const base = Number(svg.dataset.waveBase || 50), amp = Number(svg.dataset.waveAmp || WAVE.amp);
-  const state = { sag: 0 };
-  const draw = () => path.setAttribute('d', wavePath(state.sag, base, amp));
-  return { state, draw };
-}
-const effects = {
-  twang(svg, vars = {}) {
-    const { state, draw } = svg._wave || (svg._wave = waveDriver(svg));
-    const strength = vars.strength ?? 34;
-    return gsap.timeline({ onUpdate: draw, onComplete: draw })
-      .fromTo(state, { sag: 0 }, { sag: strength, duration: .12, ease: 'power2.out' })
-      .to(state, { sag: 0, duration: 1.3, ease: 'elastic.out(1.1, .28)' });
-  },
-  sticker(element, vars = {}) {
-    const tilt = Number(gsap.getProperty(element, 'rotation')) || 0;
-    return gsap.timeline(vars)
-      .fromTo(element, { scale: element.offsetWidth > 220 ? 1.18 : 1.6, rotation: tilt + (vars.turn ?? -14), opacity: 0 }, { scale: 1, rotation: tilt, opacity: 1, duration: .5, ease: 'back.out(2.6)' });
-  },
-  hop(element, vars = {}) {
-    return gsap.timeline(vars)
-      .fromTo(element, { y: 70, opacity: 0, scaleY: 1.06, transformOrigin: '50% 100%' }, { y: -12, opacity: 1, scaleY: 1, duration: .38, ease: 'power2.out' })
-      .to(element, { y: 0, duration: .2, ease: 'power2.in' })
-      .to(element, { scaleY: .9, scaleX: 1.04, duration: .08, ease: 'power1.out' })
-      .to(element, { scaleY: 1, scaleX: 1, duration: .35, ease: 'back.out(3)' });
-  }
-};
-document.querySelectorAll('[data-8b-section]').forEach(section => {
-  const twangs = section.querySelectorAll('[data-8b-motion~="twang"]');
-  if (twangs.length) {
-    const id = `effect:twang:${section.id}`;
-    queueMotion(() => gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-      twangs.forEach(svg => {
-        let running;
-        const play = self => {
-          const v = Math.abs(self.getVelocity());
-          running?.kill();
-          running = effects.twang(svg, { strength: gsap.utils.clamp(18, 46, 14 + v / 90) * (self.direction > 0 ? 1 : -1) });
-        };
-        ScrollTrigger.create({ id, trigger: svg, start: 'top bottom', end: 'bottom top', onEnter: play, onEnterBack: play });
-      });
-      return () => twangs.forEach(svg => svg._wave && (svg._wave.state.sag = 0, svg._wave.draw()));
-    }), { first: section.getBoundingClientRect().top < innerHeight, id });
-  }
-  ['sticker', 'hop'].forEach(name => {
-    const elements = section.querySelectorAll(`[data-8b-motion~="${name}"]`);
-    if (!elements.length) return;
-    const id = `effect:${name}:${section.id}`;
-    queueMotion(() => gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-      elements.forEach((element, index) => ScrollTrigger.create({
-        id, trigger: element, start: 'top 88%', once: true,
-        animation: effects[name](element, { paused: true, delay: name === 'sticker' ? (index % 3) * .08 : 0, turn: index % 2 ? 12 : -14 })
-      }));
-    }), { first: section.getBoundingClientRect().top < innerHeight, id });
-  });
-});
-if ('IntersectionObserver' in window) {
-  const loopWatch = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('is-paused', !entry.isIntersecting)));
-  document.querySelectorAll('[data-loop]').forEach(element => loopWatch.observe(element));
-}
-</script>
 <script data-8b-part="section-script:nav">
 (() => {
   const nav = document.getElementById('nav');
@@ -1309,12 +1307,12 @@ if ('IntersectionObserver' in window) {
   nav.addEventListener('focusin', () => nav.classList.remove('is-hidden'));
   const open = () => {
     menu.hidden = false; toggle.setAttribute('aria-expanded', 'true');
-    window.lenis?.stop(); document.documentElement.style.overflow = 'hidden';
+    window.motionKit?.wheel?.stop(); document.documentElement.style.overflow = 'hidden';
     menu.querySelector('a').focus();
   };
   const shut = (returnFocus = true) => {
     menu.hidden = true; toggle.setAttribute('aria-expanded', 'false');
-    window.lenis?.start(); document.documentElement.style.overflow = '';
+    window.motionKit?.wheel?.start(); document.documentElement.style.overflow = '';
     if (returnFocus) toggle.focus();
   };
   toggle.addEventListener('click', () => (menu.hidden ? open() : shut()));
@@ -1348,293 +1346,394 @@ if ('IntersectionObserver' in window) {
   });
 })();
 </script>
-<script data-8b-part="scene:opening">
-queueMotion(() => {
-  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-    const section = document.getElementById('opening');
-    const jumper = section.querySelector('.op__jumper');
-    const word = section.querySelector('.op__title-in');
-    const stickers = section.querySelectorAll('.op__sticker');
-    const wave = section.querySelector('.op__wave');
-    const fan = section.querySelector('.op__fan');
-    const cards = [...fan.querySelectorAll('.op__card')];
-    const bed = (wave._wave ||= waveDriver(wave));
-    const tilt = [-9, 3, 11];
-    const bedBox = section.querySelector('.op__bed');
-    const distance = () => window.innerHeight * 1.05;
-    const contact = p => Math.max(-30, bedBox.offsetTop + wave.getBoundingClientRect().height * .16 - p * distance() - (jumper.offsetTop + jumper.offsetHeight));
-    const timeline = gsap.timeline({
-      defaults: { ease: 'none' },
-      onUpdate: bed.draw,
-      scrollTrigger: { id: 'opening', trigger: section, start: 'top top', end: () => '+=' + Math.round(distance()), scrub: .6, invalidateOnRefresh: true }
+<script data-8b-part="motion-kit">
+(() => {
+const live = document.documentElement.hasAttribute('data-8b-live');
+const measures = new Set();
+let queued = false;
+const run = fn => { try { fn(); } catch (error) { console.error('[motion-kit] measure failed', error); } };
+const remeasure = () => {
+if (queued) return;
+queued = true;
+requestAnimationFrame(() => { queued = false; measures.forEach(run); realign(); });
+};
+const realign = () => document.getAnimations().forEach(animation => {
+if (animation.timeline && animation.timeline !== document.timeline && animation.playState === 'running') { animation.pause(); animation.play(); }
+});
+window.motionKit = {
+live,
+box(element) {
+if (!(element instanceof HTMLElement)) { const r = element.getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height }; }
+let x = 0, y = 0, node = element;
+while (node) { x += node.offsetLeft; y += node.offsetTop; node = node.offsetParent; }
+return { x, y, w: element.offsetWidth, h: element.offsetHeight };
+},
+set(element, vars) { for (const [name, value] of Object.entries(vars)) element.style.setProperty(name, String(value)); },
+measure(fn) { if (!live) return; measures.add(fn); run(fn); },
+scene(id, fn) {
+if (!live) return;
+try { fn(); } catch (error) {
+console.error(`[motion-kit] scene ${id} failed; its section stays static`, error);
+document.querySelector(`style[data-8b-part="scene:${id}"]`)?.setAttribute('media', 'not all');
+}
+}
+};
+if (!live) { window.motionReady = Promise.resolve(); return; }
+const number = () => document.querySelectorAll('[data-8b-items]').forEach(group => {
+let items;
+try { items = [...group.querySelectorAll(group.getAttribute('data-8b-items'))]; } catch { return; }
+items.forEach((item, index) => { item.style.setProperty('--i', index); item.style.setProperty('--n', items.length); });
+});
+number();
+measures.add(number);
+requestAnimationFrame(realign);
+new ResizeObserver(remeasure).observe(document.body);
+document.fonts?.ready.then(remeasure);
+addEventListener('load', remeasure);
+window.motionReady = (document.fonts?.ready ?? Promise.resolve()).then(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+})();
+(() => {
+const kit = window.motionKit;
+if (!kit.live || !matchMedia('(pointer: fine)').matches) return;
+let target = scrollY, current = scrollY, last = 0, running = false, paused = false;
+const inner = (node, dy) => {
+for (; node && node !== document.body && node !== document.documentElement; node = node.parentElement) {
+if (!/(auto|scroll)/.test(getComputedStyle(node).overflowY) || node.scrollHeight <= node.clientHeight) continue;
+if (dy > 0 ? node.scrollTop + node.clientHeight < node.scrollHeight - 1 : node.scrollTop > 0) return true;
+}
+return false;
+};
+const step = now => {
+current += (target - current) * (1 - Math.exp(-5.3 * Math.min(0.05, (now - last) / 1000)));
+last = now;
+if (Math.abs(target - current) < 0.5) current = target;
+scrollTo({ top: current, behavior: 'instant' });
+if (current !== target) requestAnimationFrame(step); else running = false;
+};
+addEventListener('wheel', event => {
+if (paused || event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY) || inner(event.target, event.deltaY)) return;
+event.preventDefault();
+if (!running) target = current = scrollY;
+const unit = event.deltaMode === 1 ? 40 : event.deltaMode === 2 ? innerHeight : 1;
+target = Math.max(0, Math.min(document.documentElement.scrollHeight - innerHeight, target + event.deltaY * unit * 0.95));
+if (!running) { running = true; last = performance.now(); requestAnimationFrame(step); }
+}, { passive: false });
+kit.wheel = { stop() { paused = true; }, start() { paused = false; } };
+})();
+(() => {
+const kit = window.motionKit;
+if (!kit.live) return;
+const at = element => {
+const own = /^(\d{1,3}(?:\.\d+)?)%$/.exec((element.getAttribute('data-8b-enter') || '').trim());
+return own && +own[1] <= 100 ? own[1] / 100 : 0.88;
+};
+let pending = [...document.querySelectorAll('[data-8b-motion]')].map(element => ({ element, y: 0, at: at(element) }));
+let queued = false;
+const check = () => {
+queued = false;
+pending = pending.filter(item => {
+if (item.y > scrollY + innerHeight * item.at) return true;
+item.element.classList.add('is-in');
+return false;
+});
+};
+const queue = () => { if (!queued) { queued = true; requestAnimationFrame(check); } };
+kit.measure(() => { pending.forEach(item => { item.y = kit.box(item.element).y; }); queue(); });
+addEventListener('scroll', queue, { passive: true });
+})();
+(() => {
+const kit = window.motionKit;
+if (!kit.live) return;
+const sheet = new CSSStyleSheet();
+sheet.replaceSync('.line{display:block;overflow:clip;padding-block:.12em;margin-block:-.12em}.line:not(:last-child){margin-bottom:0}.line+.line{margin-top:-.24em}.line+.line>.line__in{text-indent:0}:where(h1,h2,h3,h4,h5,h6,p,div,blockquote,figcaption,dd,dt):where([data-8b-split="lines"]:has(>.line)){display:flow-root}.line__in{display:block}.kit-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}');
+document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+const sources = new WeakMap(), widths = new WeakMap();
+const graphemes = typeof Intl.Segmenter === 'function'
+? text => [...new Intl.Segmenter(undefined, { granularity: 'grapheme' }).segment(text)].map(part => part.segment)
+: text => [...text];
+const span = (className, text) => { const element = document.createElement('span'); element.className = className; if (text != null) element.textContent = text; return element; };
+const split = element => {
+const mode = element.getAttribute('data-8b-split');
+if (sources.has(element)) element.innerHTML = sources.get(element); else sources.set(element, element.innerHTML);
+const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT), texts = [];
+while (walker.nextNode()) texts.push(walker.currentNode);
+let index = 0;
+for (const node of texts) {
+const fragment = document.createDocumentFragment();
+for (const piece of node.data.split(/(\s+)/)) {
+if (!piece) continue;
+if (/^\s+$/.test(piece)) { fragment.append(piece); continue; }
+const word = span('w');
+if (mode === 'chars') {
+word.setAttribute('aria-hidden', 'true');
+for (const character of graphemes(piece)) { const c = span('c', character); c.style.setProperty('--i', index++); word.append(c); }
+} else {
+word.textContent = piece;
+if (mode === 'words') word.style.setProperty('--i', index++);
+}
+fragment.append(word);
+}
+node.replaceWith(fragment);
+}
+if (mode === 'chars') element.append(span('kit-sr', element.textContent.replace(/\s+/g, ' ').trim()));
+if (mode === 'lines') {
+const lines = [];
+let top = null;
+for (const child of [...element.childNodes]) {
+const probe = child.nodeType === 1 ? child : null;
+const at = probe ? probe.getBoundingClientRect().top : top;
+if (probe && (top === null || Math.abs(at - top) > 2)) { lines.push([]); top = at; }
+if (!lines.length) lines.push([]);
+lines.at(-1).push(child);
+}
+lines.forEach((nodes, i) => {
+const line = span('line'), inner = span('line__in');
+line.style.setProperty('--i', i);
+nodes[0].before(line);
+inner.append(...nodes);
+line.append(inner);
+});
+index = lines.length;
+widths.set(element, element.clientWidth);
+}
+element.style.setProperty('--n', index);
+};
+const pending = [];
+let busy = false;
+const drain = () => {
+if (busy) return;
+const element = pending.shift();
+if (!element) return;
+busy = true;
+setTimeout(() => { try { split(element); } catch (error) { console.error('[motion-kit] split failed', error); } busy = false; drain(); }, 0);
+};
+const near = new IntersectionObserver(entries => entries.forEach(entry => {
+if (!entry.isIntersecting) return;
+near.unobserve(entry.target);
+pending.push(entry.target);
+drain();
+}), { rootMargin: '100% 0px 100% 0px' });
+(document.fonts?.ready ?? Promise.resolve()).then(() => document.querySelectorAll('[data-8b-split]').forEach(element => near.observe(element)));
+kit.measure(() => document.querySelectorAll('[data-8b-split="lines"]').forEach(element => {
+if (sources.has(element) && widths.get(element) !== element.clientWidth) { pending.push(element); drain(); }
+}));
+})();
+(() => {
+if (!window.motionKit.live) return;
+const sheet = new CSSStyleSheet();
+sheet.replaceSync('[data-8b-off],[data-8b-off]::before,[data-8b-off]::after{animation-play-state:paused!important}');
+document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+const watch = new IntersectionObserver(entries => entries.forEach(entry => entry.target.toggleAttribute('data-8b-off', !entry.isIntersecting)));
+const watched = new WeakSet();
+const scan = () => document.getAnimations().forEach(animation => {
+const element = animation.effect?.target;
+if (!element || watched.has(element) || animation.effect.getTiming().iterations !== Infinity || animation.timeline !== document.timeline) return;
+watched.add(element);
+watch.observe(element);
+});
+scan();
+addEventListener('load', scan);
+document.addEventListener('animationstart', scan, true);
+})();
+(() => {
+const kit = window.motionKit;
+kit.track = () => {};
+if (!kit.live) return;
+const named = { top: 0, center: 0.5, bottom: 1 };
+const point = text => text.trim().split(/\s+/).map(word => named[word] ?? parseFloat(word) / 100);
+kit.track = (element, start, end, fn) => {
+const [s0, v0] = point(start), [s1, v1] = point(end);
+let queued = false;
+const run = () => {
+queued = false;
+const box = element.getBoundingClientRect(), vh = innerHeight;
+const d0 = box.top + box.height * s0 - vh * v0, d1 = box.top + box.height * s1 - vh * v1;
+fn(d1 === d0 ? (d0 <= 0 ? 1 : 0) : Math.min(1, Math.max(0, -d0 / (d1 - d0))));
+};
+addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(run); } }, { passive: true });
+kit.measure(run);
+};
+})();
+</script>
+<script data-8b-part="scene-script:opening">
+motionKit.scene('opening', () => {
+  const section = document.getElementById('opening');
+  const jumper = section.querySelector('.op__jumper');
+  const wave = section.querySelector('.op__wave');
+  const bed = section.querySelector('.op__bed');
+  const fan = section.querySelector('.op__fan');
+  const cards = [...fan.querySelectorAll(':scope > li')];
+  if (!jumper || !wave || !bed) throw new Error('opening: missing jumper, wave or bed');
+  motionKit.measure(() => {
+    const edge = wave.getBoundingClientRect().height, foot = jumper.offsetTop + jumper.offsetHeight;
+    const contact = p => Math.max(-30, bed.offsetTop + edge * .16 - p * innerHeight * 1.05 - foot);
+    motionKit.set(jumper, { '--opening-drop': `${contact(.2)}px`, '--opening-press': `${contact(.31) + edge * .5}px` });
+    motionKit.set(fan, { '--opening-fan-y': `${fan.offsetHeight * .18}px` });
+    cards.forEach(card => motionKit.set(card, { '--opening-card-x': `${fan.offsetWidth / 2 - (card.offsetLeft + card.offsetWidth / 2)}px` }));
+  });
+});
+</script>
+<script data-8b-part="scene-script:zones">
+motionKit.scene('zones', () => {
+  const section = document.getElementById('zones');
+  const rows = [...section.querySelectorAll('.zn__row')];
+  const discs = rows.map(row => row.querySelector('.zn__disc'));
+  const names = rows.map(row => row.querySelector('.zn__name'));
+  const bodies = rows.map(row => row.querySelector('.zn__body'));
+  if (!rows.length || [...discs, ...names, ...bodies].some(node => !node)) throw new Error('zones: every row needs a disc, a name and a body');
+  let rest = [], lifts = [], origin = { x: 0, y: 0 }, lines = [];
+  const centre = element => {
+    let x = 0, y = 0, node = element;
+    while (node && node !== section) { x += node.offsetLeft; y += node.offsetTop; node = node.offsetParent; }
+    return { x: x + element.offsetWidth / 2, y: y + element.offsetHeight / 2 };
+  };
+  const bodyCentre = i => centre(bodies[i]).y - centre(rows[i]).y + rows[i].offsetHeight / 2;
+  const landAt = i => innerHeight * .64 - bodyCentre(i);
+  const leaveAt = i => {
+    if (!i) return innerHeight * .95;
+    const previous = bodyCentre(i - 1) - (rows[i].offsetTop - rows[i - 1].offsetTop);
+    return Math.max(innerHeight * .36 - previous, landAt(i) + innerHeight * .14);
+  };
+  const layout = () => {
+    let previous = origin;
+    discs.forEach((disc, i) => {
+      const top = rows[i].getBoundingClientRect().top, [leave, land] = lines[i];
+      const p = Math.min(1, Math.max(0, (leave - top) / (leave - land))), home = rest[i];
+      const x = (previous.x - home.x) * (1 - p);
+      const y = (previous.y - home.y) * (1 - p) - lifts[i] * 4 * p * (1 - p);
+      const squash = p > .9 && p < 1 ? Math.sin((p - .9) / .1 * Math.PI) : 0;
+      motionKit.set(disc, { '--zones-x': `${x}px`, '--zones-y': `${y}px`, '--zones-sx': 1 + .16 * squash, '--zones-sy': 1 - .2 * squash });
+      motionKit.set(names[i], { '--zones-lift': `${8 * squash}px`, '--zones-squash': 1 - .12 * squash });
+      previous = { x: home.x + x, y: home.y + y };
     });
-    timeline
-      .to(jumper, { y: () => contact(.2), duration: .2, ease: 'power1.in' }, 0)
-      .to(bed.state, { sag: 58, duration: .12, ease: 'power2.out' }, .2)
-      .to(jumper, { y: () => contact(.31) + wave.getBoundingClientRect().height * .5, duration: .11, ease: 'power2.out' }, .2)
-      .to(jumper, { scaleY: .78, scaleX: 1.12, duration: .1, ease: 'power2.out' }, .22)
-      .to(word, { scaleY: .84, scaleX: 1.02, duration: .1, ease: 'power2.out' }, .24)
-      .to(bed.state, { sag: -14, duration: .1, ease: 'power2.out' }, .33)
-      .to(bed.state, { sag: 7, duration: .1, ease: 'sine.inOut' }, .43)
-      .to(bed.state, { sag: 0, duration: .14, ease: 'sine.inOut' }, .53)
-      .to(jumper, { scaleY: 1.08, scaleX: .94, duration: .08, ease: 'power2.out' }, .32)
-      .to(jumper, { y: () => -window.innerHeight * 1.15, rotation: -360, duration: .34, ease: 'power3.out' }, .31)
-      .to(jumper, { scaleY: 1, scaleX: 1, duration: .2 }, .4)
-      .to(word, { scaleY: 1.12, scaleX: .98, duration: .08, ease: 'power2.out' }, .34)
-      .to(word, { scaleY: 1, scaleX: 1, duration: .22, ease: 'elastic.out(1, .35)' }, .42);
-    stickers.forEach((sticker, index) => timeline.to(sticker, {
-      y: () => -window.innerHeight * (.7 + index * .15), x: index ? 80 : -80, rotation: index ? 40 : -50, duration: .34, ease: 'power2.out'
-    }, .3 + index * .03));
-    cards.forEach((card, index) => timeline.fromTo(card, {
-      x: () => fan.offsetWidth / 2 - (card.offsetLeft + card.offsetWidth / 2), y: () => fan.offsetHeight * .18, rotation: -tilt[index] - (index - 1) * 2
-    }, { x: 0, y: 0, rotation: 0, duration: .4, ease: 'power2.out' }, .56 + index * .06));
-    return () => { bed.state.sag = 0; bed.draw(); };
+  };
+  motionKit.measure(() => {
+    rest = discs.map(centre);
+    lifts = rows.map(row => Math.max(70, row.offsetHeight * .35));
+    origin = { x: -discs[0].offsetWidth * .7, y: rest[0].y - rows[0].offsetHeight * .6 };
+    lines = rows.map((row, i) => [Math.round(leaveAt(i)), Math.round(landAt(i))]);
   });
-}, { first: true });
-</script>
-<script data-8b-part="scene:zones">
-queueMotion(() => {
-  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-    const section = document.getElementById('zones');
-    const rows = [...section.querySelectorAll('.zn__row')];
-    const discs = rows.map(row => row.querySelector('.zn__disc'));
-    const names = rows.map(row => row.querySelector('.zn__name'));
-    const progress = rows.map(() => ({ p: 0 }));
-    const set = (targets, prop, unit) => targets.map(target => gsap.quickSetter(target, prop, unit));
-    const discX = set(discs, 'x', 'px'), discY = set(discs, 'y', 'px'), discSX = set(discs, 'scaleX'), discSY = set(discs, 'scaleY');
-    const nameY = set(names, 'y', 'px'), nameSY = set(names, 'scaleY');
-    let rest = [], lifts = [], origin = { x: 0, y: 0 };
-    const centre = element => {
-      let x = 0, y = 0, node = element;
-      while (node && node !== section) { x += node.offsetLeft; y += node.offsetTop; node = node.offsetParent; }
-      return { x: x + element.offsetWidth / 2, y: y + element.offsetHeight / 2 };
-    };
-    const measure = () => {
-      rest = discs.map(centre);
-      lifts = rows.map(row => Math.max(70, row.offsetHeight * .35));
-      origin = { x: -discs[0].offsetWidth * .7, y: rest[0].y - rows[0].offsetHeight * .6 };
-    };
-    const layout = () => {
-      let previous = origin;
-      discs.forEach((disc, i) => {
-        const p = progress[i].p, home = rest[i];
-        const x = (previous.x - home.x) * (1 - p);
-        const y = (previous.y - home.y) * (1 - p) - lifts[i] * 4 * p * (1 - p);
-        const squash = p > .9 && p < 1 ? Math.sin((p - .9) / .1 * Math.PI) : 0;
-        discX[i](x); discY[i](y); discSX[i](1 + .16 * squash); discSY[i](1 - .2 * squash);
-        nameY[i](8 * squash); nameSY[i](1 - .12 * squash);
-        previous = { x: home.x + x, y: home.y + y };
-      });
-    };
-    measure(); layout();
-    ScrollTrigger.create({ id: 'zones:measure', trigger: section, start: 'top bottom', end: 'bottom top', onRefresh: () => { measure(); layout(); } });
-    const bodyCentre = i => { const body = rows[i].querySelector('.zn__body'); return centre(body).y - centre(rows[i]).y + rows[i].offsetHeight / 2; };
-    const landAt = i => window.innerHeight * .64 - bodyCentre(i);
-    const leaveAt = i => {
-      if (!i) return window.innerHeight * .95;
-      const previous = bodyCentre(i - 1) - (rows[i].offsetTop - rows[i - 1].offsetTop);
-      return Math.max(window.innerHeight * .36 - previous, landAt(i) + window.innerHeight * .14);
-    };
-    rows.forEach((row, i) => gsap.to(progress[i], {
-      p: 1, ease: 'none', onUpdate: layout,
-      scrollTrigger: { id: `zones:row-${i + 1}`, trigger: row, start: () => `top ${Math.round(leaveAt(i))}px`, end: () => `top ${Math.round(landAt(i))}px`, scrub: .4 }
-    }));
-    return () => gsap.set([...discs, ...names], { clearProps: 'transform' });
-  });
+  motionKit.track(section, 'top 100%', 'bottom 0%', layout);
 });
 </script>
-<script data-8b-part="scene:airtime">
-queueMotion(() => {
-  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-    const section = document.getElementById('airtime');
-    const image = section.querySelector('.at__img');
-    const [first, second] = section.querySelectorAll('.at__line');
-    const text = section.querySelector('.at__text');
-    gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { id: 'airtime', trigger: section, start: 'top bottom', end: 'bottom bottom', scrub: .6, invalidateOnRefresh: true } })
-      .fromTo(image, { scale: 1.3, yPercent: 6 }, { scale: 1, yPercent: 0, duration: .7 }, 0)
-      .fromTo(first, { y: () => window.innerHeight * .55 }, { y: 0, duration: .48, ease: 'power3.out' }, 0)
-      .fromTo(second, { y: () => window.innerHeight * .8 }, { y: 0, duration: .55, ease: 'power3.out' }, 0)
-      .fromTo(text, { y: () => window.innerHeight * .6, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'power3.out' }, .06)
-      .to({}, { duration: .3 }, .7);
-  });
-});
-</script>
-<script data-8b-part="scene:sessions">
-queueMotion(() => {
-  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-    const section = document.getElementById('sessions');
-    const title = section.querySelector('.ss__title');
-    const glow = section.querySelector('.ss__ticket--glow');
-    const tokens = getComputedStyle(document.documentElement);
-    const colour = n => tokens.getPropertyValue(`--color-${n}`).trim();
-    gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { id: 'sessions', trigger: section, start: 'top 40%', end: 'bottom 75%', scrub: .5 } })
-      .fromTo(section, { '--ground': colour(4) }, { '--ground': colour(5), duration: .22 }, .16)
-      .to(section, { '--ground': colour(2), duration: .2 }, .4)
-      .to(section, { '--ground': colour(3), duration: .16 }, .62)
-      .fromTo(title, { color: colour(3) }, { color: colour(1), duration: .03 }, .57)
-      .fromTo(glow, { '--glow': 0 }, { '--glow': 1, duration: .1 }, .84);
-    return () => gsap.set([section, title, glow], { clearProps: 'all' });
-  });
-});
-</script>
-<style data-8b-part="scene-style:parties">
-@layer scenes {
-@media (prefers-reduced-motion: no-preference) {
-  #parties[data-route] .pt__ball { display: block; }
-  #parties .pt__pop { transform-origin: 50% 60%; }
-}
-}
-</style>
-<script data-8b-part="scene:parties">
-queueMotion(() => {
+<script data-8b-part="scene-script:parties">
+motionKit.scene('parties', () => {
   const section = document.getElementById('parties');
   const route = section.querySelector('.pt__route');
+  const list = section.querySelector('.pt__stops');
   const ball = section.querySelector('.pt__ball');
   const ballIn = section.querySelector('.pt__ball-in');
-  const stops = [...section.querySelectorAll('.pt__stop')];
-  const pops = stops.map(stop => stop.querySelector('.pt__pop'));
+  const path = section.querySelector('.pt__dash');
+  const trail = section.querySelector('.pt__trail');
+  const pops = [...list.children].map(stop => stop.querySelector('.pt__pop'));
+  if (!route || !ball || !ballIn || !path || !trail || pops.length < 2 || pops.some(pop => !pop)) throw new Error('parties: missing route, ball or stops');
+  const wide = matchMedia('(min-width: 901px)');
+  const hops = pops.length - 1, length = hops + .25;
   const within = element => {
     let x = 0, y = 0, node = element;
     while (node && node !== route) { x += node.offsetLeft; y += node.offsetTop; node = node.offsetParent; }
     return { x: x + element.offsetWidth / 2, y: y + element.offsetHeight / 2 };
   };
-  const landing = (timeline, index, at) => {
-    timeline
-      .to(ballIn, { scaleY: .7, scaleX: 1.25, duration: .05, ease: 'power1.out' }, at)
-      .to(ballIn, { scaleY: 1, scaleX: 1, duration: .14, ease: 'back.out(3)' }, at + .05)
-      .fromTo(pops[index], { scale: 1 }, { scale: 1.08, duration: .05, ease: 'power1.out', immediateRender: false }, at)
-      .to(pops[index], { scale: 1, duration: .2, ease: 'back.out(3)' }, at + .05);
+  const out1 = t => 1 - (1 - t) ** 2, out2 = t => 1 - (1 - t) ** 3, in2 = t => t ** 3;
+  const back = t => (t - 1) ** 2 * (4 * (t - 1) + 3) + 1;
+  const mix = (a, b, t) => a + (b - a) * t;
+  let total = 0, fractions = [], place = null, ys = [], listTop = 0, listHeight = 1;
+  const measure = () => {
+    if (wide.matches) {
+      total = path.getTotalLength();
+      const box = path.ownerSVGElement.viewBox.baseVal;
+      const samples = Array.from({ length: 401 }, (_, i) => { const p = path.getPointAtLength(total * i / 400); return { f: i / 400, x: p.x, y: p.y }; });
+      fractions = pops.map(pop => {
+        const c = within(pop), vx = c.x / route.offsetWidth * box.width, vy = c.y / route.offsetHeight * box.height;
+        return samples.reduce((best, s) => ((s.x - vx) ** 2 + (s.y - vy) ** 2 < (best.x - vx) ** 2 + (best.y - vy) ** 2 ? s : best)).f;
+      });
+      const matrix = path.getScreenCTM(), frame = route.getBoundingClientRect();
+      place = point => ({ x: matrix.a * point.x + matrix.c * point.y + matrix.e - frame.left, y: matrix.b * point.x + matrix.d * point.y + matrix.f - frame.top });
+    } else {
+      ys = pops.map(pop => within(pop).y);
+      listTop = within(list).y - list.offsetHeight / 2;
+      listHeight = list.offsetHeight;
+    }
   };
-  const mm = gsap.matchMedia();
-  mm.add('(prefers-reduced-motion: no-preference) and (min-width: 901px)', () => {
-    section.setAttribute('data-route', '');
-    const path = section.querySelector('.pt__dash');
-    const trail = section.querySelector('.pt__trail');
-    const total = path.getTotalLength();
-    const box = path.ownerSVGElement.viewBox.baseVal;
-    const samples = Array.from({ length: 401 }, (_, i) => { const p = path.getPointAtLength(total * i / 400); return { f: i / 400, x: p.x, y: p.y }; });
-    const fractions = pops.map(pop => {
-      const c = within(pop), vx = c.x / route.offsetWidth * box.width, vy = c.y / route.offsetHeight * box.height;
-      return samples.reduce((best, s) => ((s.x - vx) ** 2 + (s.y - vy) ** 2 < (best.x - vx) ** 2 + (best.y - vy) ** 2 ? s : best)).f;
+  const render = progress => {
+    const t = progress * length, hop = Math.min(hops - 1, Math.floor(t)), u = Math.min(1, t - hop);
+    const arc = u < .5 ? out2(u / .5) : 1 - in2((u - .5) / .5);
+    const landing = Math.min(hops, Math.floor(t)), since = t - landing;
+    let sx = 1, sy = 1;
+    if (landing >= 1 && since < .05) { const k = out1(since / .05); sx = mix(1, 1.25, k); sy = mix(1, .7, k); }
+    else if (landing >= 1 && since < .19) { const k = back((since - .05) / .14); sx = mix(1.25, 1, k); sy = mix(.7, 1, k); }
+    pops.forEach((pop, i) => {
+      const d = t - i;
+      const scale = !i || d < 0 || d >= .25 ? 1 : d < .05 ? mix(1, 1.08, out1(d / .05)) : mix(1.08, 1, back((d - .05) / .2));
+      motionKit.set(pop, { '--parties-pop': scale });
     });
-    const along = (start, end) => ({ path, align: path, alignOrigin: [.5, .5], start, end });
-    gsap.set(ball, { motionPath: along(fractions[0], fractions[0]) });
-    gsap.set(trail, { strokeDasharray: total, strokeDashoffset: total * (1 - fractions[0]) });
-    const timeline = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { id: 'parties', trigger: route, start: 'top 65%', end: 'bottom 80%', scrub: .6 } });
-    for (let i = 0; i < stops.length - 1; i++) {
-      timeline
-        .to(ball, { motionPath: along(fractions[i], fractions[i + 1]), duration: 1 }, i)
-        .fromTo(trail, { strokeDashoffset: total * (1 - fractions[i]) }, { strokeDashoffset: total * (1 - fractions[i + 1]), duration: 1, immediateRender: false }, i)
-        .to(ballIn, { y: -110, duration: .5, ease: 'power2.out' }, i)
-        .to(ballIn, { y: 0, duration: .5, ease: 'power2.in' }, i + .5);
-      landing(timeline, i + 1, i + 1);
+    motionKit.set(ballIn, { '--parties-sx': sx, '--parties-sy': sy });
+    if (wide.matches) {
+      const f = mix(fractions[hop], fractions[hop + 1], u), point = place(path.getPointAtLength(total * f));
+      motionKit.set(ball, { '--parties-x': `${point.x - ball.offsetWidth / 2}px`, '--parties-y': `${point.y - ball.offsetHeight / 2}px` });
+      motionKit.set(ballIn, { '--parties-hop-x': '0px', '--parties-hop-y': `${-110 * arc}px` });
+      motionKit.set(trail, { '--parties-dash': total, '--parties-gap': `${total * (1 - f)}px` });
+    } else {
+      const y = mix(ys[hop], ys[hop + 1], u);
+      motionKit.set(ball, { '--parties-x': '0px', '--parties-y': `${y}px` });
+      motionKit.set(ballIn, { '--parties-hop-x': `${26 * arc}px`, '--parties-hop-y': '0px' });
+      motionKit.set(list, { '--trail': (y - listTop) / listHeight });
     }
-    return () => { section.removeAttribute('data-route'); gsap.set([ball, ballIn, trail, ...pops], { clearProps: 'all' }); };
-  });
-  mm.add('(prefers-reduced-motion: no-preference) and (max-width: 900px)', () => {
-    section.setAttribute('data-route', '');
-    const list = section.querySelector('.pt__stops');
-    const ys = () => pops.map(pop => within(pop).y);
-    const listTop = () => within(list).y - list.offsetHeight / 2;
-    const timeline = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { id: 'parties', trigger: list, start: 'top 60%', end: 'bottom 70%', scrub: .6, invalidateOnRefresh: true } });
-    for (let i = 0; i < stops.length - 1; i++) {
-      timeline
-        .fromTo(ball, { y: () => ys()[i] }, { y: () => ys()[i + 1], duration: 1, immediateRender: !i }, i)
-        .fromTo(list, { '--trail': () => (ys()[i] - listTop()) / list.offsetHeight }, { '--trail': () => (ys()[i + 1] - listTop()) / list.offsetHeight, duration: 1, immediateRender: !i }, i)
-        .to(ballIn, { x: 26, duration: .5, ease: 'power2.out' }, i)
-        .to(ballIn, { x: 0, duration: .5, ease: 'power2.in' }, i + .5);
-      landing(timeline, i + 1, i + 1);
-    }
-    return () => { section.removeAttribute('data-route'); gsap.set([ball, ballIn, list, ...pops], { clearProps: 'all' }); };
-  });
+  };
+  motionKit.measure(measure);
+  motionKit.track(route, 'top 65%', 'bottom 80%', progress => { if (wide.matches) render(progress); });
+  motionKit.track(list, 'top 60%', 'bottom 70%', progress => { if (!wide.matches) render(progress); });
 });
 </script>
-<script data-8b-part="scene:league">
-queueMotion(() => {
-  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-    const section = document.getElementById('league');
-    const list = section.querySelector('.lg__rows');
-    const rows = [...list.children];
-    const step = () => (rows.length > 1 ? rows[1].offsetTop - rows[0].offsetTop : 0);
-    rows.forEach((row, index) => {
-      const shift = (Number(row.dataset.week) || index + 1) - 1 - index;
-      gsap.timeline({ scrollTrigger: { id: `league:row-${index + 1}`, trigger: list, start: 'top 82%', end: 'top 32%', scrub: .5, invalidateOnRefresh: true } })
-        .fromTo(row, { y: () => shift * step() }, { y: 0, duration: 1, ease: 'power1.inOut' }, 0)
-        .fromTo(row, { x: 0 }, { x: Math.sign(shift) * -30, duration: .5, ease: 'sine.out', immediateRender: false }, 0)
-        .to(row, { x: 0, duration: .5, ease: 'sine.in' }, .5);
-    });
-  });
-});
-</script>
-<script data-8b-part="scene:prices">
-queueMotion(() => {
-  const section = document.getElementById('prices');
-  const row = section.querySelector('.pr__row');
+<script data-8b-part="scene-script:prices">
+motionKit.scene('prices', () => {
+  const row = document.getElementById('prices').querySelector('.pr__row');
   const passes = [...row.children];
-  const mm = gsap.matchMedia();
-  mm.add('(prefers-reduced-motion: no-preference) and (min-width: 701px)', () => {
+  motionKit.measure(() => {
     const middle = (passes.length - 1) / 2;
-    passes.forEach((pass, index) => {
-      gsap.timeline({ scrollTrigger: { id: `prices:pass-${index + 1}`, trigger: row, start: 'top 90%', end: 'top 35%', scrub: .5, invalidateOnRefresh: true } })
-        .fromTo(pass, {
-          x: () => row.offsetWidth / 2 - (pass.offsetLeft + pass.offsetWidth / 2),
-          y: () => -pass.offsetTop + Math.abs(index - middle) * 22 + 50,
-          rotation: (index - middle) * 9, transformOrigin: '50% 150%'
-        }, { x: 0, y: 0, rotation: 0, duration: 1, ease: 'power2.out' });
-    });
-  });
-  mm.add('(prefers-reduced-motion: no-preference) and (max-width: 700px)', () => {
-    passes.forEach((pass, index) => {
-      if (!index) return;
-      const above = passes[index - 1];
-      gsap.timeline({ scrollTrigger: { id: `prices:pass-${index + 1}`, trigger: pass, start: 'top bottom', end: 'top 70%', scrub: .5, invalidateOnRefresh: true } })
-        .fromTo(pass, { y: () => above.offsetTop - pass.offsetTop, rotation: index % 2 ? -5 : 5 }, { y: 0, rotation: 0, duration: 1, ease: 'power2.out' });
-    });
+    passes.forEach((pass, index) => motionKit.set(pass, {
+      '--prices-x': `${row.offsetWidth / 2 - (pass.offsetLeft + pass.offsetWidth / 2)}px`,
+      '--prices-y': `${-pass.offsetTop + Math.abs(index - middle) * 22 + 50}px`,
+      '--prices-drop': `${index ? passes[index - 1].offsetTop - pass.offsetTop : 0}px`
+    }));
   });
 });
 </script>
-<script data-8b-part="scene:faq">
-queueMotion(() => {
-  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-    const section = document.getElementById('faq');
-    const list = section.querySelector('.fq__list');
-    const mark = list.querySelector('.fq__mark');
-    const items = [...list.querySelectorAll('.fq__item')];
+<script data-8b-part="scene-script:faq">
+motionKit.scene('faq', () => {
+  const list = document.getElementById('faq').querySelector('.fq__list');
+  const mark = list.querySelector('.fq__mark');
+  const items = [...list.querySelectorAll('.fq__item')];
+  if (!mark || items.length < 2 || items.some(item => !item.querySelector('summary'))) throw new Error('faq: needs the mark and summaries');
+  const out1 = t => 1 - (1 - t) ** 2, out2 = t => 1 - (1 - t) ** 3, in2 = t => t ** 3;
+  const back = t => (t - 1) ** 2 * (4 * (t - 1) + 3) + 1;
+  const mix = (a, b, t) => a + (b - a) * t;
+  const length = items.length - .82;
+  let offsets = [];
+  motionKit.measure(() => {
     const centre = item => item.offsetTop + item.querySelector('summary').offsetHeight / 2;
-    const offset = index => centre(items[index]) - centre(items[0]);
-    const timeline = gsap.timeline({ scrollTrigger: { id: 'faq', trigger: list, start: 'top 50%', end: 'bottom 62%', scrub: .5, invalidateOnRefresh: true } });
-    for (let i = 1; i < items.length; i++) {
-      timeline
-        .to(mark, { y: () => offset(i - 1) - 50, duration: .42, ease: 'power2.out' }, i - 1)
-        .to(mark, { y: () => offset(i), duration: .5, ease: 'power2.in' }, i - .58)
-        .to(mark, { scaleY: .72, scaleX: 1.2, duration: .06, ease: 'power1.out' }, i - .08)
-        .to(mark, { scaleY: 1, scaleX: 1, duration: .2, ease: 'back.out(3)' }, i - .02);
-    }
-    const onToggle = () => refreshScroll();
-    items.forEach(item => item.addEventListener('toggle', onToggle));
-    return () => items.forEach(item => item.removeEventListener('toggle', onToggle));
+    offsets = items.map(item => centre(item) - centre(items[0]));
+  });
+  motionKit.track(list, 'top 50%', 'bottom 62%', progress => {
+    const t = progress * length, i = Math.min(items.length - 1, Math.floor(t) + 1);
+    const d = t - (i - 1), top = offsets[i - 1] - 50;
+    const y = d < .42 ? mix(offsets[i - 1], top, out2(d / .42)) : mix(top, offsets[i], in2(Math.min(1, (d - .42) / .5)));
+    let sx = 1, sy = 1;
+    const land = Math.min(items.length - 1, Math.max(1, Math.round(t))), since = t - (land - .08);
+    if (since >= 0 && since < .06) { const k = out1(since / .06); sx = mix(1, 1.2, k); sy = mix(1, .72, k); }
+    else if (since >= .06 && since < .26) { const k = back((since - .06) / .2); sx = mix(1.2, 1, k); sy = mix(.72, 1, k); }
+    motionKit.set(mark, { '--faq-y': `${y}px`, '--faq-sx': sx, '--faq-sy': sy });
   });
 });
 </script>
-<script data-8b-part="scene:footer">
-queueMotion(() => {
-  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-    const footer = document.getElementById('footer');
-    const wrap = footer.querySelector('.ft__mark-wrap');
-    const mark = footer.querySelector('.ft__mark');
-    const discs = [...footer.querySelectorAll('.ft__disc')];
-    const split = SplitText.create(mark, { type: 'chars', charsClass: 'ft__char' });
-    const timeline = gsap.timeline({ scrollTrigger: { id: 'footer', trigger: wrap, start: 'top bottom', end: 'bottom bottom', scrub: .5, invalidateOnRefresh: true } });
-    split.chars.forEach((char, index) => {
-      const at = index * .13;
-      timeline
-        .fromTo(char, { y: () => -(wrap.offsetTop * .8 + index * 12), rotation: index % 2 ? 14 : -12 }, { y: 0, rotation: 0, duration: .34, ease: 'power2.in' }, at)
-        .fromTo(char, { scaleX: 1, scaleY: 1 }, { scaleX: 1.14, scaleY: .74, duration: .05, ease: 'power1.out', immediateRender: false }, at + .34)
-        .to(char, { scaleX: 1, scaleY: 1, duration: .2, ease: 'back.out(3)' }, at + .39);
-    });
-    const tilts = discs.map(disc => Number(gsap.getProperty(disc, 'rotation')) || 0);
-    discs.forEach((disc, index) => timeline.fromTo(disc, { y: () => -wrap.offsetTop * .3, rotation: tilts[index] + (index % 2 ? 30 : -30) }, { y: 0, rotation: tilts[index], duration: .45, ease: 'bounce.out' }, .08 + index * .18));
-    return () => split.revert();
+<script data-8b-part="scene-script:footer">
+motionKit.scene('footer', () => {
+  const wrap = document.getElementById('footer').querySelector('.ft__mark-wrap');
+  const mark = wrap.querySelector('.ft__mark');
+  const discs = wrap.querySelectorAll('.ft__disc').length;
+  motionKit.measure(() => {
+    const letters = mark.querySelectorAll('.c').length || [...mark.textContent.replace(/\s+/g, '')].length;
+    motionKit.set(wrap, { '--footer-top': `${wrap.offsetTop}px`, '--footer-d': Math.max((letters - 1) * .13 + .59, .08 + (discs - 1) * .18 + .45) });
   });
 });
 </script>
