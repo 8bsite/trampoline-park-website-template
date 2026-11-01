@@ -1,8 +1,8 @@
-# Free HTML trampoline park website template with GSAP scroll animations
+# Free HTML trampoline park website template with scroll animations and no libraries
 
-Trampoline park website template: a one-page site for an indoor venue that sells sessions, passes and birthday parties, with a zone list, a timetable, a party route, a café, a league table and a booking request form. The look is cream, red and yellow with wavy section edges and big condensed type. It is one HTML file with an AGENTS.md, so an AI agent can adapt it to your park.
+Trampoline park website template: a one-page site for an indoor venue that sells sessions, passes and birthday parties, with zones, a timetable, a party route, a café, a league table and a booking form. The look is cream, red and yellow with wavy edges and big condensed type. Its scroll motion runs on CSS with no JavaScript libraries, in one HTML file with an AGENTS.md, so an AI agent can adapt it to your park.
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE) ![one HTML file: no build](https://img.shields.io/badge/one%20HTML%20file-no%20build-orange) ![GSAP: ScrollTrigger](https://img.shields.io/badge/GSAP-ScrollTrigger-88ce02)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE) ![one HTML file: no build](https://img.shields.io/badge/one%20HTML%20file-no%20build-orange) ![dependencies: none](https://img.shields.io/badge/dependencies-none-brightgreen)
 
 **[Live demo](https://8bsite.github.io/trampoline-park-website-template/)** · **[Use this template](https://github.com/new?template_name=trampoline-park-website-template&template_owner=8bsite)** · **[Download ZIP](https://github.com/8bsite/trampoline-park-website-template/archive/refs/heads/main.zip)** · **[Template page on 8b.com](https://8b.com/templates/hopla/)**
 
@@ -24,25 +24,25 @@ curl -LO https://raw.githubusercontent.com/8bsite/trampoline-park-website-templa
 Then fill in the angle brackets and give your agent this prompt:
 
 ```text
-Read AGENTS.md, then edit index.html. Turn this template into the site for <my venue: the kind of park, city and address, the zones and their age limits, session names with days and times, pass prices, the party offer, the café menu, safety rules and waiver process, opening hours, how guests book>. Replace first the venue name, the zones, the sessions and the passes. Keep the section ids, the classes AGENTS.md lists, a --len number matching the headline word and the footer wordmark, and a distinct data-week number on every league row. Ask me for any missing fact and never invent prices, hours, addresses, safety rules, licences, reviews or contacts.
+Read AGENTS.md, then edit index.html. Turn this template into the site for <my venue: city and address, zones with age limits, sessions with days and times, pass prices, the party offer, café menu, safety rules, opening hours, how guests book>. Replace the venue name, zones, sessions and passes first. Keep a --len number matching the headline word and the footer wordmark. Motion is CSS scroll-driven animation plus the inline kit: keep the gate script in the head, the section ids, the data-8b-section and data-8b-motion attributes and the classes AGENTS.md lists; add no animation library. Ask me for missing facts; never invent prices, hours, addresses, safety rules, reviews or contacts.
 ```
 
-For vibe coding with Claude Code, Cursor or Codex, start with the facts only the venue can supply: name, address, opening hours, session times with age limits, pass prices, the party offer, the café menu and the safety rules. The demo's rules, waiver wording, lockers, parking and league times are all invented, so the agent must ask for the real ones. Keep the section ids and the classes AGENTS.md lists, and give each league row its own data-week number, its place in the previous order. The opening fan is built for three cards, in both its script and its CSS, and the timetable's colour run reads the --color variables by name, so change their values, not their names.
+If you vibe code a trampoline park website template for Claude Code, Cursor or Codex, start with the facts only the venue can supply: name, address, opening hours, session times with age limits, pass prices, the party offer, the café menu and the safety rules. The demo's rules, waiver, parking and league times are invented. The opening fan's three card positions are set in its CSS, and the timetable's colour run reads the --color variables by name, so change their values, not their names. The league's slide from last week's order is written in its CSS row by row: when that order changes, the agent rewrites those offsets; the data-week numbers are not read by the motion.
 
 No agent? Click **[Use this template](https://github.com/new?template_name=trampoline-park-website-template&template_owner=8bsite)**, edit `index.html` on GitHub and turn on **Settings > Pages**.
 
 ## Sections and motion
 
 - **Navigation**: fixed top bar: wordmark, Book button, Menu button opening a full-screen link overlay with contacts.
-- **Bounce at Hopla, the trampoline park in Sheffield**: first screen: one giant word with a photo of a jumper in front, wordmark, two stickers, two short texts; then a red panel with heading, button and three tilted photos. Smooth scrolling throughout; wavy edges wobble and stickers slap on page-wide. As the red panel rises over the held first screen, the jumper lands on its edge, which sags and flings them off spinning.
+- **Bounce at Hopla, the trampoline park in Sheffield**: first screen: one giant word with a photo of a jumper in front, wordmark, two stickers, two short texts; then a red panel with heading, button and three tilted photos. Smooth wheel scrolling with a mouse; wavy edges wobble and stickers slap on page-wide. As the red panel rises over the held first screen, the jumper lands on its edge, which sags and flings them off spinning.
 - **One roof, six ways off the ground**: list of six activity zones in a zig-zag: big name, one line, age sticker, round photo (demo: trampoline zones). Tied to scroll, each round photo hops along an arc from the zone above and squashes as it lands.
-- **The best bit is the middle**: full-width photo with a two-line statement held on screen while you scroll. The photo stays pinned and zooms out while the two heading lines rise at different speeds, tied to scroll.
+- **The best bit is the middle**: full-width photo with a two-line statement held on screen while you scroll. The photo stays in place and zooms out while the two heading lines rise at different speeds, tied to scroll.
 - **One shed, five crowds**: timetable of five sessions as tickets: time, name, text, ages, photo (ground turns from morning yellow to night). As you scroll the timetable, the ground shifts from morning yellow through amber and red to night black, and the Glow Night ticket lights up.
 - **Birthday parties, sorted**: birthday parties: heading, text, price line, button, and a five-step route with numbered tilted photos. Tied to scroll, a red ball hops along the dashed route from photo to photo, drawing a trail; each photo bumps as it lands.
 - **The Landing**: on-site café: wide photo, round coffee photo, sticker, text, short price list.
 - **Ninja Wall League**: ranking table of six results on a dark field, with heading, text, entry link and photo (demo: ninja wall times). Rows start in last Sunday's order and slide into this week's ranking as you scroll the table into view.
 - **House rules, short version**: red wall of five tilted rule stickers and one photo (house rules).
-- **Pick a pass**: five ticket-shaped passes with name, price and one line, plus two buttons. On screens wider than 700 px the five passes start fanned in a stack like a hand of cards and deal out into place as you scroll.
+- **Pick a pass**: five ticket-shaped passes with name, price and one line, plus two buttons. On screens wider than 700 px the five passes start fanned in a stack like a hand of cards and deal out into place as you scroll; on phones each pass slides down off the one above.
 - **Asked a lot**: questions and answers (native &lt;details&gt;) next to a heading and a phone line. A big red question mark hops down the list from question to question as you scroll, squashing on each.
 - **Come and jump**: address, opening hours, phone, email, directions and a booking request form (placeholders).
 - **Footer**: links, address and phone, copyright with the Design: 8B credit, a giant outlined HOPLA wordmark with three round photos. The giant outlined wordmark drops in letter by letter, squashing on landing, while three round photos bounce into place.
@@ -71,7 +71,7 @@ Edit the plain text in index.html. Each session ticket holds days and times, a n
 
 ## Is it the right base?
 
-Choose this template when families book time on equipment: a bounce centre, an indoor play centre, a ninja or climbing park, a venue that lives on birthday parties. It fits less well when the pitch is one dated event with a lineup and ticket tiers, where the [festival](https://8b.com/templates/ondo/) template has the right sections, or when the business is a coaching gym built around memberships and a weekly class schedule. The honest weak spot is booking. The page has request buttons and a form, but no live availability, payment or waiver tool, so a park with timed capacity needs a booking service behind the Book buttons.
+Choose this template when families book time on equipment: a bounce centre, an indoor play centre, a ninja or climbing park, a venue that lives on birthday parties. This is the light build: the same look and the same bounces, with no animation library and no script from a CDN. Measured here, it downloads about 39 KB of code gzipped in one file; the GSAP version needs about 92 KB and five more requests. For one dated event with a lineup, the [festival](https://8b.com/templates/ondo/) template fits better. Booking is the weak spot: the Book buttons and the form have no live availability, payment or waiver tool behind them.
 
 ## Before you publish
 
@@ -80,7 +80,9 @@ Choose this template when families book time on equipment: a bounce centre, an i
 
 ## Tech
 
-GSAP 3.13.0, ScrollTrigger, SplitText, MotionPathPlugin, Lenis 1.3.27 from jsDelivr, 126 KB, no build step. Chrome and Edge 111+, Safari 16.2+, Firefox 113+ (it uses color-mix(), cascade layers, small/dynamic viewport units). With "reduce motion" on, the page is complete and still.
+No JavaScript libraries: CSS scroll-driven animations and a small inline motion script with its own smooth wheel scrolling, 153 KB, no build step. Chrome and Edge 111+, Safari 16.2+, Firefox 113+ (it uses color-mix(), cascade layers, small/dynamic viewport units). Without scroll-driven animations (Firefox today) the scroll motion and the smooth wheel are off and each section shows its finished layout, while any load-in or looping animation still plays; with "reduce motion" on, the page is complete and nothing moves on its own (hover effects stay).
+
+A GSAP build of the same page is [`index.gsap.html`](index.gsap.html): GSAP 3.13.0, ScrollTrigger, SplitText, MotionPathPlugin, Lenis 1.3.27 from jsDelivr, 128 KB; its scroll motion also plays in Firefox. Use one of the two files.
 
 ## License
 

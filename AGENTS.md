@@ -1,6 +1,6 @@
 # AGENTS.md: trampoline park website template
 
-Website for a trampoline park or indoor family activity venue. One file, `index.html`, with inline CSS and scripts (GSAP, ScrollTrigger, Lenis from jsDelivr); no build step, and none is needed for copy, colour or photo edits.
+Website for a trampoline park or indoor family activity venue. One file, `index.html`, with inline CSS and scripts, no JavaScript libraries: the scroll motion is CSS scroll-driven animations plus a small inline motion kit; no build step, and none is needed for copy, colour or photo edits. A GSAP build of the same page is `index.gsap.html` (GSAP 3.13.0, ScrollTrigger, SplitText, MotionPathPlugin, Lenis 1.3.27 from jsDelivr): edit one of the two, not both.
 
 ## Files
 Edit these files, not a page fetched by URL (that arrives as a summary).
@@ -14,21 +14,19 @@ Upload `index.html`, LICENSE and CREDITS.md; not this file, README.md or `previe
 
 ## Keep
 - Every `id`, `data-8b-section`, `data-8b-motion` and `data-8b-part` (`section:<id>` styles, `scene:<id>` animation).
+- The motion parts `motion-gate` (head: sets `data-8b-live` on `<html>` only with scroll-driven animation support and no reduced motion), `motion-kit` and `motion`, and every other `data-8b-*` attribute (`data-8b-items` groups, `data-8b-off`, `data-8b-enter`): the CSS and the kit read them. Items ordered by `--i` follow their group; counts the CSS fixes are listed under Known limits (`data-8b-fixed` marks such a group).
 - Selectors the scripts use:
   - `section-script:nav`: `.nav__menu` `.menu__close` `.menu__list`
   - `section-script:contact`: `.ct__form` `.ct__status` `data-error` `data-sent`
-  - `scene:opening`: `.op__jumper` `.op__title-in` `.op__sticker` `.op__wave` `.op__fan` `.op__card` `.op__bed`
-  - `scene:zones`: `.zn__row` `.zn__disc` `.zn__name` `.zn__body`
-  - `scene:airtime`: `.at__img` `.at__line` `.at__text`
-  - `scene:sessions`: `.ss__title` `.ss__ticket--glow`
-  - `scene:parties`: `.pt__route` `.pt__ball` `.pt__ball-in` `.pt__stop` `.pt__pop` `.pt__dash` `.pt__trail` `.pt__stops`
-  - `scene:league`: `.lg__rows` `data-week`
-  - `scene:prices`: `.pr__row`
-  - `scene:faq`: `.fq__list` `.fq__mark` `.fq__item`
-  - `scene:footer`: `.ft__mark-wrap` `.ft__mark` `.ft__disc`
+  - `scene-script:opening`: `.op__jumper` `.op__wave` `.op__bed` `.op__fan`
+  - `scene-script:zones`: `.zn__row` `.zn__disc` `.zn__name` `.zn__body`
+  - `scene-script:parties`: `.pt__route` `.pt__stops` `.pt__ball` `.pt__ball-in` `.pt__dash` `.pt__trail` `.pt__pop`
+  - `scene-script:prices`: `.pr__row`
+  - `scene-script:faq`: `.fq__list` `.fq__mark` `.fq__item`
+  - `scene-script:footer`: `.ft__mark-wrap` `.ft__mark` `.ft__disc` `.c`
 - `style="--len:N"` = characters in that display line, spaces included: `Bounce` is 6, `Hopla` is 5.
 - The wavy section edges are inline SVGs (class m-wave); each coloured section starts with one. Their colour follows the section's background.
-- The sessions background colour run and the Glow Night glow use --color-4, --color-5, --color-2 and --color-3: recolour through the tokens and the run follows.
+- The sessions background run (the scene:sessions keyframes) goes through --color-4, --color-5, --color-2 and --color-3, and the Glow Night glow is --shadow-2, drawn in --color-4: recolour through the tokens and the run follows.
 - The rules and the FAQ mention an online waiver, but the page has no waiver link: add one if you use a waiver service, or edit the text.
 - Colours and fonts are variables in `:root` (`data-8b-part="tokens"`): `--color-1` #f5e3cd (cream page background), `--color-2` #e2130f (red headings, buttons and red bands), `--color-3` #1b1b1b (text and the dark league band), `--color-4` #ffd750 (yellow stickers and yellow bands), `--color-5` #f4a804 (amber party route and timetable shade), `--color-6` #ffffff (white outlines on headings, photo frames, ticket cards and rule stickers); body text needs 4.5:1 contrast.
 - With reduced motion the page must read in full.
@@ -39,7 +37,7 @@ Upload `index.html`, LICENSE and CREDITS.md; not this file, README.md or `previe
 - Book (nav), Book a jump (first screen and prices): now #contact; owner's target: your online booking page.
 - Book a party (parties): now #contact; owner's target: your party booking page or enquiry form.
 - Enter this month's league (league): now #contact; owner's target: your league entry form, or remove the link.
-- The form in `#contact` (fields `name`, `email`, `date`, `jumpers`, `session`) sends nothing; `section-script:contact` validates it and shows the thank-you text. Formspree: `action="https://formspree.io/f/<id>"` and `fetch` POST `new FormData(form)` first. Netlify: `data-netlify="true"` and a hidden `form-name`. Or delete it and the script.
+- The form in `#contact` (fields `name`, `email`, `date`, `jumpers`, `session`) sends nothing; `section-script:contact` handles its submit in the page (read it before you connect a service). Formspree: `action="https://formspree.io/f/<id>"` and `fetch` POST `new FormData(form)` first. Netlify: `data-netlify="true"` and a hidden `form-name`. Or delete it and the script.
 - The name Hopla (any letter case); the favicon letter and colours in `<link rel="icon">`.
 - Photos (28, Unsplash: opening 4, zones 6, airtime 1, sessions 5, parties 5, landing 2, league 1, rules 1, footer 3): `src`, no `srcset`/`sizes`, `width`/`height` to the ratio, `alt`, CREDITS.md.
 - `<title>`, meta description, og tags.
@@ -62,9 +60,10 @@ All demo text, never to be invented:
 - Company: "© 2026 Hopla Trampoline Park Ltd" (footer).
 
 ## Known limits
-- Without motion (reduce motion or no JavaScript) the sessions section stays on the yellow morning ground; with motion it ends on the night ground. Both are complete and readable.
-- The footer wordmark stays split into letters (SplitText) after it lands; this is invisible but shows in the DOM.
-- The league note under the table describes the animation ("Rows start in last Sunday's order…"); edit or remove it with the rows.
+- Without scroll-driven animations (Firefox today) or with reduce motion on, the sessions section stays on the yellow morning ground; with motion it ends on the night ground. Both are complete and readable.
+- Three lists have per-item positions in CSS, so keep their counts or edit those rules: the opening fan (3 photos, nth-child), the party route (5 stops placed by nth-child along a drawn SVG path) and the league (6 rows: the starting order is fixed in the scene:league keyframes by li:nth-of-type, and the data-week attributes on the rows are not read, so with other results edit those keyframes or the rows repeat the demo's climbs and falls).
+- The league note under the table describes the animation ("Rows start in last Sunday's order"); edit or remove it with the rows.
+- With motion on, the inline kit splits the footer wordmark into letter spans (data-8b-split="chars") with a hidden copy for screen readers; the HTML keeps the whole word, so edit it there.
 
 ## Check
-375 and 1440 px, reduced motion on, console clean; `data-8b-placeholder` and Hopla left only in class names.
+375 and 1440 px, reduced motion on, a browser without scroll-driven animations (Firefox: the finished static layout), console clean; `data-8b-placeholder` and Hopla left only in class names.
